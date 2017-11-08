@@ -1,10 +1,37 @@
 <?php
-    //データベースへの接続
+/*     //データベースへの接続
     $link = mysqli_connect("127.0.0.1","root","","wc");
     if(mysqli_connect_error()){
         die("データベースへの接続に失敗しました。");
-    }
-    
+    } 
+*/
+
+	function db_connect() {
+
+		// 静的変数を宣言。 複数回の接続を禁止 
+		static $connection;
+			
+		// DBへの接続がまだ確立されていなければ、DBへの接続を試みる。 
+		if(!isset($connection)) {
+			// ファイルのパスを指定してDB接続用のconfig.iniをLoadする
+			$config = parse_ini_file('./config.ini');		
+			$connection = mysqli_connect('localhost',$config['username'],$config['password'],$config['dbname']);
+		 }
+		 
+		// 接続失敗の場合、エラー処理が必要
+		if($connection === false) {
+			// エラーハンドリング
+			// 管理者に連絡, 
+			// エラーをログに吐き出す, 
+			// エラースクリーンを表示させる, など
+			return mysqli_connect_error(); 
+		}
+		return $connection;
+	}
+
+	// Connect to the database
+	$connection = db_connect();
+
     //個室毎に最新の更新日時のレコードのStatusを抽出
     $query1  =   "SELECT *
                 FROM components cmp1
