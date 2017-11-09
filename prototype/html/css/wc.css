@@ -1,0 +1,63 @@
+﻿body {	width:100%;
+	margin:0;
+	padding:0;
+	color:#666;
+	font-family:Century Gothic,'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+	line-height:1.6em;
+	background:url(../image/back.jpg) no-repeat right top #ede8ea;
+	}
+div {
+	color: #666666;
+	width: 80%;
+	margin-top:20px;
+	margin-right:auto;
+	margin-left:auto;
+	}
+#container {
+	width:80%;  /*このdiv要素の幅は、ウィンドウ幅の80％*/
+	max-width:900px;  /*でも最大値は900pxまで*/
+	margin:auto;  /*左右autoでセンター合わせに（上下マージンは0）*/
+	padding:30px;  /*内側の空きは上下左右30px*/
+	background:#EEFFFF;
+    }
+span {
+	}
+p {
+	}
+h1 {
+	color:#0000FF;
+	font-size:30px;
+	width: 70%;
+	margin-top:20px;
+	margin-right:auto;
+	margin-left:auto;
+	}
+h2 {	
+	color:#EFFBFB;
+	font-size:20px;
+	}
+h3 {
+	color:#EFFBFB;
+	font-size:20px;
+	width: 70%;
+	margin-top:20px;
+	margin-right:auto;
+	margin-left:auto;
+	}
+table#smp1 {
+	width: 100%;
+	margin:2em 0;
+	border-top: 1px solid #ccc;   /*table要素の「上」ボーダー*/
+	border-left: 1px solid #ccc;  /*table要素の「左」ボーダー*/
+	border-spacing:0;  /*セル同士の間隔*/
+	text-align:center
+	}
+table#smp1 tr th,
+table#smp1 tr td {  /*「,」で区切って複数のセレクタを指定しています*/
+	border-bottom:1px solid #ccc; /*セルの「下」ボーダー*/
+	border-right: 1px solid #ccc; /*セルの「右」ボーダー*/
+	padding:0.5em;  /*セルのボーダーとテキストの間をあけて読みやすく*/
+	}
+table#smp1 tr th {
+	background: #e6eaff;  /*th（見出し）だけ背景色を付けてます*/
+	}
