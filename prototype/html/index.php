@@ -29,16 +29,18 @@
 		return $connection;
 	}
 
-	$query = "SELECT comp_id,
-				   status,
-				   upd_dt
-			FROM   components
-			JOIN   (
-				SELECT comp_id,
-					   MAX(upd_dt) AS upd_dt
-				FROM   components
-				GROUP BY comp_id ) t2 ON components.com_id = t2.com_id
-			AND components.upd_dt = t2.upd_dt ";
+	$query = "SELECT
+              components.comp_id,
+              components.status,
+              components.upd_dt
+            FROM components
+            JOIN (
+              SELECT comp_id, MAX(upd_dt)
+              AS upd_dt
+              FROM components
+              GROUP BY comp_id
+            ) t2 ON components.comp_id = t2.comp_id
+            AND components.upd_dt = t2.upd_dt;
 
 
    function db_query($query) {
