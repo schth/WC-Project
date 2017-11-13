@@ -1,7 +1,7 @@
 <?php
 $url = "http://127.0.0.1/api/compartment/read.php";
 $json = file_get_contents($url);
-$result = json_decode($json,true);
+$result = json_decode($json, true);
 
 //var_dump($result);
 
@@ -19,5 +19,4 @@ echo $result['records'][0]['upd_dt'];
 echo $result['records'][1]['upd_dt'];
 echo $result['records'][2]['upd_dt'];
 echo $result['records'][3]['upd_dt'];
-
- ?>
+?>

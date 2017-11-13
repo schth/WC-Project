@@ -20,22 +20,19 @@ $stmt = $compartment->read();
 $num = mysqli_num_rows($stmt);
 
 // SQLの結果がデータありかをチェック
-if($num > 0){
+if ($num > 0) {
 
     // 配列設定
     $compartments_arr=array();
     $compartments_arr["records"]=array();
 
-    while ($row = mysqli_fetch_assoc($stmt)){
-      array_push($compartments_arr["records"], $row);
+    while ($row = mysqli_fetch_assoc($stmt)) {
+        array_push($compartments_arr["records"], $row);
     }
     //compartments_arrの要素をJSON 形式にした文字列を返します
     echo json_encode($compartments_arr);
-}
-
-else{
+} else {
     echo json_encode(
         array("message" => "No compartments found.")
     );
 }
-?>

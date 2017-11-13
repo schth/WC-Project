@@ -1,15 +1,18 @@
 <?php
-class Compartment{
+class Compartment
+{
 
     // DBコネクション
     private $conn;
 
     // DBコネクションをコンストラクタ化
-    public function __construct($db){
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
 
-    function read(){
+    public function read()
+    {
 
         // SELECE文
         $query = "SELECT
@@ -25,9 +28,10 @@ class Compartment{
                   ) t2 ON components.comp_id = t2.comp_id
                   AND components.upd_dt = t2.upd_dt";
 
-        $stmt = mysqli_query($this->conn,$query);
+        $stmt = mysqli_query($this->conn, $query);
 
         return $stmt;
     }
 }
+
 ?>

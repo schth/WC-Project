@@ -8,7 +8,7 @@ class Database
 
     public function db_connect()
     {
-       try {
+        try {
             // DBへの接続がまだ確立されていなければ、DBへの接続を試みる。
             if (!isset($connection)) {
                 // ファイルのパスを指定してDB接続用のconfig.iniをLoadする
@@ -31,4 +31,3 @@ class Database
         return $connection;
     }
 }
-?>
