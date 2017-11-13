@@ -6,43 +6,6 @@
     }
 
 /*
-<<<<<<< HEAD:prototype/index.php
-    function db_connect() {
-
-        // 静的変数を宣言。 複数回の接続を禁止
-        static $connection;
-
-        // DBへの接続がまだ確立されていなければ、DBへの接続を試みる。
-        if(!isset($connection)) {
-            // ファイルのパスを指定してDB接続用のconfig.iniをLoadする
-            $config = parse_ini_file('./config.ini');
-            $connection = mysqli_connect('localhost',$config['username'],$config['password'],$config['dbname']);
-         }
-
-        // 接続失敗の場合、エラー処理が必要
-        if($connection === false) {
-            // エラーハンドリング
-            // 管理者に連絡,
-            // エラーをログに吐き出す,
-            // エラースクリーンを表示させる, など
-            return mysqli_connect_error();
-        }
-        return $connection;
-    }
-
-    $query = "SELECT
-                                    comp_id,
-                                    status,
-                                    upd_dt
-                                 FROM components JOIN (
-                                    SELECT
-                                        comp_id,
-                                        MAX(upd_dt) as upd_dt
-                                    FROM components
-                                    GROUP BY comp_id
-                                ) t2 ON components.com_id = t2.com_id
-                                         AND components.upd_dt = t2.upd_dt";
-=======
 	function db_connect() {
 
 		// 静的変数を宣言。 複数回の接続を禁止
@@ -70,13 +33,12 @@
 				   status,
 				   upd_dt
 			FROM   components
-			JOIN   ( 
+			JOIN   (
 				SELECT comp_id,
 					   MAX(upd_dt) AS upd_dt
 				FROM   components
 				GROUP BY comp_id ) t2 ON components.com_id = t2.com_id
 			AND components.upd_dt = t2.upd_dt ";
->>>>>>> 12fa03b70116ef1279f05530a1bd70a20108ef9a:prototype/html/index.php
 
 
    function db_query($query) {
