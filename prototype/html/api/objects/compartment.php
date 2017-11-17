@@ -16,17 +16,17 @@ class Compartment
 
         // SELECE文
         $query = "SELECT
-                    components.comp_id,
-                    components.status,
-                    components.upd_dt
-                  FROM components
+                    compartment.comp_id,
+                    compartment.status,
+                    compartment.upd_dt
+                  FROM compartment
                   JOIN (
                     SELECT comp_id, MAX(upd_dt)
                     AS upd_dt
-                    FROM components
+                    FROM compartment
                     GROUP BY comp_id
-                  ) t2 ON components.comp_id = t2.comp_id
-                  AND components.upd_dt = t2.upd_dt";
+                  ) t2 ON compartment.comp_id = t2.comp_id
+                  AND compartment.upd_dt = t2.upd_dt";
 
         $stmt = mysqli_query($this->conn, $query);
 
