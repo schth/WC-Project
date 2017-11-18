@@ -1,23 +1,19 @@
 <?php
-$url = "http://127.0.0.1/api/compartment/read.php";
-$json = file_get_contents($url);
-// $json文字列を配列型に変換
-$result = json_decode($json, true);
-
-//var_dump($result);
-
-echo $result['records'][0]['comp_id'];
-echo $result['records'][1]['comp_id'];
-echo $result['records'][2]['comp_id'];
-echo $result['records'][3]['comp_id'];
-
-echo $result['records'][0]['status'];
-echo $result['records'][1]['status'];
-echo $result['records'][2]['status'];
-echo $result['records'][3]['status'];
-
-echo $result['records'][0]['upd_dt'];
-echo $result['records'][1]['upd_dt'];
-echo $result['records'][2]['upd_dt'];
-echo $result['records'][3]['upd_dt'];
+$url = 'http://127.0.0.1/api/compartment/read.php'; 
+$json = file_get_contents($url); 
+$result = json_decode($json); 
+if (count($result->records)) {
+     echo '<table border=1>';
+     echo '<tr>';
+     foreach ($result->records as $idx => $value) {
+         echo "<th>$value->comp_id</th>";
+     }
+     echo '</tr>';
+     echo '<tr>';
+     foreach ($result->records as $idx => $value) {
+         echo "<td>$value->status</td>";
+     }
+     echo '</tr>';
+     echo '</table>';
+ }
 ?>
