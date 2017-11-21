@@ -32,33 +32,32 @@
         </tr>
       </table> -->
 		<?php
-		$url = 'http://127.0.0.1/api/compartment/read.php';
-		$json = file_get_contents($url);
-		// $json文字列をオブジェクト型に変換
-		$result = json_decode($json);
-		if (count($result->records)) {
-			// テーブルタグ
-			echo '<table id="smp1">';
-			echo '<tr>';
-			// 多次元連想配列から値を取得
-			foreach ($result->records as $key => $value) {
-				// 行を出力
-				echo "<th>$value->comp_id</th>";
-			}
-			echo '</tr>';
-			echo '<tr>';
-			foreach ($result->records as $key => $value) {
-				// 行を出力
-				echo "<td>$value->status</td>";
-			}
-			echo '</tr>';
-			// テーブルタグ閉じ
-			echo '</table>';
-		}
+        $url = 'http://127.0.0.1/api/compartment/read.php';
+        $json = file_get_contents($url);
+        // $json文字列をオブジェクト型に変換
+        $result = json_decode($json);
+        if (count($result->records)) {
+            // テーブルタグ
+            echo '<table id="smp1">';
+            echo '<tr>';
+            // 多次元連想配列から値を取得
+            foreach ($result->records as $key => $value) {
+                // 行を出力
+                echo "<th>$value->comp_id</th>";
+            }
+            echo '</tr>';
+            echo '<tr>';
+            foreach ($result->records as $key => $value) {
+                // 行を出力
+                echo "<td>$value->status</td>";
+            }
+            echo '</tr>';
+            // テーブルタグ閉じ
+            echo '</table>';
+        }
 
-		?>
+        ?>
 
-			?>
 		</p>
     </div>
   </body>

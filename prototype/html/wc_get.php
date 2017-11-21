@@ -22,4 +22,3 @@
     //$row = mysqli_fetch_array($result);
     //echo "<p>";
     //echo "トイレIDは".$row['comp_ID']."、利用状況は".$row['status']."です。";
-?>
