@@ -16,3 +16,4 @@ if (count($result->records)) {
     echo '</tr>';
     echo '</table>';
 }
+?>

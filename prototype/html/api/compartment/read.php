@@ -17,9 +17,10 @@ $compartment = new Compartment($db);
 
 // compartmentからデータ抽出
 $stmt = $compartment->read();
+// 抽出した結果を$numに代入
 $num = mysqli_num_rows($stmt);
 
-// SQLの結果がデータありかをチェック
+// データのありかをチェック
 if ($num > 0) {
 
     // 配列設定

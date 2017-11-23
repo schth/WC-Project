@@ -12,6 +12,7 @@ class Database
             // DBへの接続がまだ確立されていなければ、DBへの接続を試みる。
             if (!isset($connection)) {
                 // ファイルのパスを指定してDB接続用のconfig.iniをLoadする
+                //echo $_SERVER['DOCUMENT_ROOT'];
                 $config = parse_ini_file('../../../config/config.ini');
                 $connection = mysqli_connect('127.0.0.1', $config['username'], $config['password'], $config['dbname']);
             }// 接続失敗の場合、エラー処理が必要

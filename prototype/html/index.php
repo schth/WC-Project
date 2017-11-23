@@ -54,7 +54,7 @@
               echo '</table>';
           }
         ?>
-		</p>
+      </p>
     </div>
   </body>
 </html>
