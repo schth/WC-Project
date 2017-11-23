@@ -1,163 +1,60 @@
-<?php
-   //データベースへの接続
-    $link = mysqli_connect("127.0.0.1", "root", "", "wc");
-    if (mysqli_connect_error()) {
-        die("データベースへの接続に失敗しました。");
-    }
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta charset="UTF-8" />
+    <title>Watcher of Compartment</title>
+    <link rel="stylesheet" href="css/wc.css" />
+  </head>
 
-/*
-	function db_connect() {
+  <body>
+    <h1>Watcher of Compartment</h1>
+    <h3>～トイレとお腹の渋滞緩和から始める働き方改革～</h3>
+    <div id="container">
+      <h4>商船三井ビル2階　個室の空き状況を(ほぼ)リアルタイムにお知らせします</h4>
+      <h4>男子トイレの空きは残り(〇の数)室！　走れ！!</h4>
+      <!--ここに見取り図を貼る-->
+      <img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />
+      <p>
+       <?php
+          // APIを利用
+          $url = 'http://127.0.0.1/api/compartment/read.php';
+          $json = file_get_contents($url);
+          // $json文字列をオブジェクト型に変換
+          $result = json_decode($json);
+          if (count($result->records)) {
+              // テーブルタグ出力
+              echo '<table id="smp1">';
+              // 1行目
+              echo '<tr>';
+              // 多次元連想配列から値を取得
+              foreach ($result->records as $key => $value) {
+                  // 行を出力
+                  echo '<th>'.'00'.$value->comp_id.'</th>';
+              }
+              echo '</tr>';
 
-		// 静的変数を宣言。 複数回の接続を禁止
-		static $connection;
-
-		// DBへの接続がまだ確立されていなければ、DBへの接続を試みる。
-		if(!isset($connection)) {
-			// ファイルのパスを指定してDB接続用のconfig.iniをLoadする
-			$config = parse_ini_file('../config/config.ini');
-			$connection = mysqli_connect('localhost',$config['username'],$config['password'],$config['dbname']);
-		 }
-
-		// 接続失敗の場合、エラー処理が必要
-		if($connection === false) {
-			// エラーハンドリング
-			// 管理者に連絡,
-			// エラーをログに吐き出す,
-			// エラースクリーンを表示させる, など
-			return mysqli_connect_error();
-		}
-		return $connection;
-	}
-
-	$query = "SELECT
-              components.comp_id,
-              components.status,
-              components.upd_dt
-            FROM components
-            JOIN (
-              SELECT comp_id, MAX(upd_dt)
-              AS upd_dt
-              FROM components
-              GROUP BY comp_id
-            ) t2 ON components.comp_id = t2.comp_id
-            AND components.upd_dt = t2.upd_dt;
-
-
-   function db_query($query) {
-       $connection = db_connect();
-       $result = mysqli_query($connection,$query);
-       return $result;
-   }
-
-
-  function db_error(){
-   $connection = db_connect();
-   return mysqli_error($connection)
-  }
-
-    function db_select($query){
-        $rows = array();
-        $result = db_query($query);
-
-        if($result === false){
-            return false;
-        }
-        while ($row = mysqli_fetch_assoc($result)) {
-            $rows[]=$row;
-        }
-        return $rows;
-    }
-
-    function db_error(){
-     $connection = db_connect();
-     return mysqli_error($connection)
-    }
-
-    $rows = db_select ($query);
-    if ($rows === false){
-        $error = db_error();
-        # エラー処理...
-    }
-
-*/
-    //個室毎に最新の更新日時のレコードのStatusを抽出
-    $query1  =   "SELECT *
-                FROM components cmp1
-                WHERE
-                cmp1.comp_id = 1
-                AND cmp1.upd_dt =
-                        (SELECT MAX(cmp2.upd_dt)
-                        FROM components cmp2
-                        WHERE cmp2.comp_id=1)";
-
-    $query2  =   "SELECT *
-                FROM components cmp1
-                WHERE
-                cmp1.comp_id = 2
-                AND cmp1.upd_dt =
-                        (SELECT MAX(cmp2.upd_dt)
-                        FROM components cmp2
-                        WHERE cmp2.comp_id=2)";
-
-    $query3  =   "SELECT *
-                FROM components cmp1
-                WHERE
-                cmp1.comp_id = 3
-                AND cmp1.upd_dt =
-                        (SELECT MAX(cmp2.upd_dt)
-                        FROM components cmp2
-                        WHERE cmp2.comp_id=3)";
-
-    $query4  =   "SELECT *
-                FROM components cmp1
-                WHERE
-                cmp1.comp_id = 4
-                AND cmp1.upd_dt =
-                        (SELECT MAX(cmp2.upd_dt)
-                        FROM components cmp2
-                        WHERE cmp2.comp_id=4)";
-
-    //個室毎に最新のレコードを変数に代入
-    $result1 = mysqli_query($link, $query1);
-    $result2 = mysqli_query($link, $query2);
-    $result3 = mysqli_query($link, $query3);
-    $result4 = mysqli_query($link, $query4);
-
-    $row1 = mysqli_fetch_array($result1);
-    $row2 = mysqli_fetch_array($result2);
-    $row3 = mysqli_fetch_array($result3);
-    $row4 = mysqli_fetch_array($result4);
-
-    //取得した時間を表示
-    date_default_timezone_set('Asia/Tokyo');
-    $today = date("Y-m-d H:i:s");
-    echo "これは ".$today." に取得した状況です。<p>";
-
-    //個室毎にStatusに応じて、メッセージを出力
-    if ($row1['status'] == 'N') {
-        echo "個室1が空いてます！急げ！！！";
-    } else {
-        echo "個室1は使われてます。";
-    }
-    echo "<p>";
-    if ($row2['status'] == 'N') {
-        echo "個室2が空いてます！急げ！！！";
-    } else {
-        echo "個室2は使われてます。";
-    }
-    echo "<p>";
-    if ($row3['status'] == 'N') {
-        echo "個室3が空いてます！急げ！！！";
-    } else {
-        echo "個室3は使われてます。";
-    }
-    echo "<p>";
-    if ($row4['status'] == 'N') {
-        echo "個室4が空いてます！急げ！！！";
-    } else {
-        echo "個室4は使われてます。";
-    }
-    //$row = mysqli_fetch_array($result);
-    //echo "<p>";
-    //echo "トイレIDは".$row['comp_ID']."、利用状況は".$row['status']."です。";
-?>
+              // 2行目
+              echo '<tr>';
+              foreach ($result->records as $key => $value) {
+                  switch ($value->status){
+                    // $value->statusの値がYなら、○を出力
+                    case Y:
+                      echo '<td>○</td>';
+                      break;
+                    // $value->statusの値がNなら、×を出力
+                    case N:
+                      echo '<td>×</td>';
+                      break;
+                  }
+              }
+              echo '</tr>';
+              // テーブルタグ閉じ
+              echo '</table>';
+          }
+        ?>
+		</p>
+    </div>
+  </body>
+</html>
