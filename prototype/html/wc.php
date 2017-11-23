@@ -7,7 +7,7 @@
     <title>Watcher of Compartment</title>
     <link rel="stylesheet" href="css/wc.css" />
   </head>
-  
+
   <body>
     <h1>Watcher of Compartment</h1>
     <h3>～トイレとお腹の渋滞緩和から始める働き方改革～</h3>
@@ -17,47 +17,43 @@
       <!--ここに見取り図を貼る-->
       <img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />
       <p>
-      <!--<table id="smp1">
-        <tr>
-          <th>001</th>
-          <th>002</th>
-          <th>003</th>
-          <th>004</th>
-        </tr>
-        <tr>
-          <td>〇</td>
-          <td>〇</td>
-          <td>〇</td>
-          <td>〇</td>
-        </tr>
-      </table> -->
-		<?php
-        $url = 'http://127.0.0.1/api/compartment/read.php';
-        $json = file_get_contents($url);
-        // $json文字列をオブジェクト型に変換
-        $result = json_decode($json);
-        if (count($result->records)) {
-            // テーブルタグ
-            echo '<table id="smp1">';
-            echo '<tr>';
-            // 多次元連想配列から値を取得
-            foreach ($result->records as $key => $value) {
-                // 行を出力
-                echo "<th>$value->comp_id</th>";
-            }
-            echo '</tr>';
-            echo '<tr>';
-            foreach ($result->records as $key => $value) {
-                // 行を出力
-                echo "<td>$value->status</td>";
-            }
-            echo '</tr>';
-            // テーブルタグ閉じ
-            echo '</table>';
-        }
+       <?php
+          // APIを利用
+          $url = 'http://127.0.0.1/api/compartment/read.php';
+          $json = file_get_contents($url);
+          // $json文字列をオブジェクト型に変換
+          $result = json_decode($json);
+          if (count($result->records)) {
+              // テーブルタグ出力
+              echo '<table id="smp1">';
+              // 1行目
+              echo '<tr>';
+              // 多次元連想配列から値を取得
+              foreach ($result->records as $key => $value) {
+                  // 行を出力
+                  echo '<th>'.'00'.$value->comp_id.'</th>';
+              }
+              echo '</tr>';
 
+              // 2行目
+              echo '<tr>';
+              foreach ($result->records as $key => $value) {
+                  switch ($value->status){
+                    // $value->statusの値がYなら、○を出力
+                    case Y:
+                      echo '<td>○</td>';
+                      break;
+                    // $value->statusの値がNなら、×を出力
+                    case N:
+                      echo '<td>×</td>';
+                      break;
+                  }
+              }
+              echo '</tr>';
+              // テーブルタグ閉じ
+              echo '</table>';
+          }
         ?>
-
 		</p>
     </div>
   </body>
