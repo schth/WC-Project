@@ -1,24 +1,21 @@
 <?php
-    //データベースへの接続
-    $link = mysqli_connect("127.0.0.1", "root", "", "wc");
-    if (mysqli_connect_error()) {
-        die("データベースへの接続に失敗しました。");
-    }
-    //登録データを変数に格納
-    $comp_id = $_GET['g_id'];
-    $status = $_GET['g_status'];
-    date_default_timezone_set('Asia/Tokyo');
-    $today = date("Y-m-d H:i:s");
-    //データベースにデータを登録
-    $query = "INSERT INTO `components` (`comp_id`,`status`,`upd_dt`) VALUES ('$comp_id','$status','$today')";
+// ファイル読み込み
+include_once 'api/config/database.php';
+include_once 'insert.php';
 
-    if ($result = mysqli_query($link, $query)) {
-        echo "INSERTクエリの発行に成功しました";
-    }
-    //$query = "SELECT * FROM components";
-    //if($result = mysqli_query($link,$query)){
-    //    echo "クエリの発行に成功しました";
-    //}
-    //$row = mysqli_fetch_array($result);
-    //echo "<p>";
-    //echo "トイレIDは".$row['comp_ID']."、利用状況は".$row['status']."です。";
+// Databaseインスタンス生成
+$database = new Database();
+
+$db = $database->db_connect();
+
+// 初期化
+$get_stat = new get_stat($db);
+
+//GETメソッドでセンサーから送信された値を取得し、変数に格納
+$comp_id = $_GET['g_id'];
+$status = $_GET['g_status'];
+
+//get_statクラスのinsert関数をセンサーの値を引数にして実行
+$get_stat->insert($comp_id,$status);
+
+?>
