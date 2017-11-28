@@ -19,7 +19,7 @@
       <p>
        <?php
           // APIを利用
-          $url = 'http://127.0.0.1/api/compartment/read.php';
+          $url = 'http://127.0.0.1/api/compartment/read_status.php';
           $json = file_get_contents($url);
           // $json文字列をオブジェクト型に変換
           $result = json_decode($json);
