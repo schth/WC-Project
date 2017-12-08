@@ -57,4 +57,10 @@
       </p>
     </div>
   </body>
+
+<footer>
+<a href="privacyguide.html">プライバシーガイド</a>
+<p>Copyright 2017</p>
+</footer>
+
 </html>
