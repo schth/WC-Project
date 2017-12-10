@@ -12,8 +12,8 @@ $db = $database->db_connect();
 $compartment = new compartment($db);
 
 //GETメソッドでセンサーから送信された値を取得し、変数に格納
-$comp_id = $_GET['g_id'];
-$status = $_GET['g_status'];
+$comp_id = $_POST['g_id'];
+$status = $_POST['g_status'];
 
 //get_statクラスのinsert関数をセンサーの値を引数にして実行
 $compartment->insert($comp_id,$status);

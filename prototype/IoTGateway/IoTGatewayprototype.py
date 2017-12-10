@@ -32,7 +32,7 @@ while 1:
                     print(timestamp + " " + m[5] + ": is opened !")
                     # 取得した値を変数に格納
                     comp_id = 1  # ここをusbから取得した値にしたい
-                    status = 'N'  # ここをusbから取得した値にしたい
+                    status = 'Y'  # ここをusbから取得した値にしたい
                     wc_status = {'g_id': comp_id, 'g_status': status}
                     # httpプロトコルでpost通信
                     response = requests.post(
@@ -46,7 +46,7 @@ while 1:
                     print(timestamp + " " + m[5] + ": is closed !")
                     # 取得した値を変数に格納
                     comp_id = 1  # ここをusbから取得した値にしたい
-                    status = 'Y'  # ここをusbから取得した値にしたい
+                    status = 'N'  # ここをusbから取得した値にしたい
                     wc_status = {'g_id': comp_id, 'g_status': status}
                     # httpプロトコルでpost通信
                     response = requests.post(
