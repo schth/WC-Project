@@ -25,6 +25,7 @@ while 1:
     m = str(data).split(";")
     if (len(m) == 13):
         if m[5] == "10e27d0":
+            #センサーの値を閾値と比較
             if int(m[9]) < sensor:
                 room1CurrentStatus = False
                 if room1BeforeStatus != room1CurrentStatus:
@@ -32,6 +33,7 @@ while 1:
                     print(timestamp + " " + m[5] + ": is opened !")
                     # 取得した値を変数に格納
                     comp_id = 1  # ここをusbから取得した値にしたい
+                    #ドアが空いている場合、statusをYに設定
                     status = 'Y'  # ここをusbから取得した値にしたい
                     wc_status = {'g_id': comp_id, 'g_status': status}
                     # httpプロトコルでpost通信
