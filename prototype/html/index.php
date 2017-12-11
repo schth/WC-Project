@@ -21,15 +21,16 @@
           // $json文字列をオブジェクト型に変換
           $result = json_decode($json);
 
+// APIの結果から、個室の空室数を計算する処理
   if (count($result->records)) {
       $empty_number = 0;
       foreach ($result->records as $key => $value) {
           switch ($value->status) {
-                // $value->statusの値がYなら、○を出力
+                // $value->statusの値がYなら、空室の数を＋１
                 case Y:
                   $empty_number = $empty_number +1;
                   break;
-                // $value->statusの値がNなら、×を出力
+                // $value->statusの値がNならBreak
                 case N:
                   break;
               }
