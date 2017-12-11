@@ -22,9 +22,9 @@
           $result = json_decode($json);
 
   if (count($result->records)) {
-          $empty_number = 0;
-          foreach ($result->records as $key => $value) {
-              switch ($value->status){
+      $empty_number = 0;
+      foreach ($result->records as $key => $value) {
+          switch ($value->status) {
                 // $value->statusの値がYなら、○を出力
                 case Y:
                   $empty_number = $empty_number +1;
@@ -33,11 +33,11 @@
                 case N:
                   break;
               }
-          }
+      }
       echo    '<h4>男子トイレの空きは残り<font size="5" color="#ff0000">'.$empty_number.'</font>室！　走れ！!</h4>';
-        //ここに見取り図を貼る
+      //ここに見取り図を貼る
       echo '  <img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />';
-}
+  }
           if (count($result->records)) {
               // テーブルタグ出力
               echo '<table id="smp1">';
@@ -53,7 +53,7 @@
               // 2行目
               echo '<tr>';
               foreach ($result->records as $key => $value) {
-                  switch ($value->status){
+                  switch ($value->status) {
                     // $value->statusの値がYなら、○を出力
                     case Y:
                       echo '<td>○</td>';
