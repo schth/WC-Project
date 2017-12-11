@@ -3,19 +3,32 @@
 include_once '../config/database.php';
 include_once '../objects/compartment.php';
 
-// Databaseインスタンス生成
-$database = new Database();
+if ($_SERVER["REQUEST_METHOD"]==="POST"){
+ if (!empty($_POST['g_id']) && !empty($_POST['g_status'])) {
 
-$db = $database->db_connect();
+   //POSTメソッドでセンサーから送信された値を取得し、変数に格納
+    $comp_id = htmlspecialchars($_POST['g_id'], ENT_QUOTES, 'UTF-8');
+    $status = htmlspecialchars($_POST['g_status'], ENT_QUOTES, 'UTF-8');
 
-// 初期化
-$compartment = new compartment($db);
+    // Databaseインスタンス生成
+    $database = new Database();
+    $db = $database->db_connect();
 
-//GETメソッドでセンサーから送信された値を取得し、変数に格納
-$comp_id = $_POST['g_id'];
-$status = $_POST['g_status'];
+    // 初期化
+    $compartment = new compartment($db);
 
-//get_statクラスのinsert関数をセンサーの値を引数にして実行
-$compartment->insert($comp_id,$status);
+    //get_statクラスのinsert関数をセンサーの値を引数にして実行
+    $compartment->insert($comp_id,$status);
+
+
+  } else {
+    $err = "入力されていない項目があります。";
+    echo $err;
+  }
+}
+else {
+  # code...
+}
+
 
 ?>
