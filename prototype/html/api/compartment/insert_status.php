@@ -1,7 +1,7 @@
 <?php
 // ファイル読み込み
-include_once '../config/database.php';
-include_once '../objects/compartment.php';
+require_once '../config/database.php';
+require_once '../objects/compartment.php';
 
 if ($_SERVER["REQUEST_METHOD"]==="POST"){
  if (!empty($_POST['g_id']) && !empty($_POST['g_status'])) {
