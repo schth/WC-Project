@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS wc;
+CREATE DATABASE IF NOT EXISTS wc DEFAULT CHARACTER SET utf8;
 
 USE wc;
 
@@ -9,4 +9,3 @@ CREATE TABLE IF NOT EXISTS compartment (
   upd_dt DATETIME,
   PRIMARY KEY (comp_id,
                upd_dt));
-               
