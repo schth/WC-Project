@@ -6,7 +6,7 @@ require_once '../objects/compartment.php';
 if ($_SERVER["REQUEST_METHOD"]==="POST") {
     if (!empty($_POST['g_id']) && !empty($_POST['g_status'])) {
 
-   //POSTメソッドでセンサーから送信された値を取得し、変数に格納
+        //POSTメソッドでセンサーから送信された値を取得し、変数に格納
         $comp_id = htmlspecialchars($_POST['g_id'], ENT_QUOTES, 'UTF-8');
         $status = htmlspecialchars($_POST['g_status'], ENT_QUOTES, 'UTF-8');
 
@@ -17,13 +17,24 @@ if ($_SERVER["REQUEST_METHOD"]==="POST") {
         // 初期化
         $compartment = new compartment($db);
 
-        //get_statクラスのinsert関数をセンサーの値を引数にして実行
-        $compartment->insert($comp_id, $status);
+        //compartemtクラスのinsert関数をセンサーの値を引数にして実行
+        $result =  $compartment->insert($comp_id, $status);
+
+        //insert文の実行結果を判定
+        if ($result) {
+          //tureの場合
+          echo "New record created successfully";
+        } else {
+          //falseの場合
+          echo  "Record insert error";
+        }
+
     } else {
-        $err = "入力されていない項目があります。";
-        echo $err;
+      //POSTされたデータに入力されていない項目がある場合
+        echo "入力されていない項目があります。";
     }
 } else {
+    //POSTメソッド以外で接続された場合
     # code...
 }
 ?>

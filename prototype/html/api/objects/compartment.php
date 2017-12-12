@@ -13,7 +13,6 @@ class Compartment
 
     public function read()
     {
-
         // SELECE文
         $query = "SELECT
                     compartment.comp_id,
@@ -30,6 +29,7 @@ class Compartment
 
         $stmt = mysqli_query($this->conn, $query);
 
+        //selectした結果を返す
         return $stmt;
     }
 
@@ -41,8 +41,12 @@ class Compartment
         //データベースにデータを登録
         $query = "INSERT INTO `compartment` (`comp_id`,`status`,`upd_dt`) VALUES ('$comp_id','$status','$today')";
 
-        mysqli_query($this->conn, $query);
-    }
+        $result = mysqli_query($this->conn, $query);
+
+        // insert文の実行結果を返す
+        return $result;
+
+      }
 }
 
 ?>
