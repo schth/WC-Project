@@ -128,4 +128,3 @@ INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (3,
         'Y',
         '2017-11-11 15:25:00');
-

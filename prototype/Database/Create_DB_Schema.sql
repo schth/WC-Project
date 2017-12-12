@@ -9,3 +9,4 @@ CREATE TABLE IF NOT EXISTS compartment (
   upd_dt DATETIME,
   PRIMARY KEY (comp_id,
                upd_dt));
+               
