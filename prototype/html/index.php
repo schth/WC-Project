@@ -27,17 +27,17 @@
       foreach ($result->records as $key => $value) {
           switch ($value->status) {
                 // $value->statusの値がYなら、空室の数を＋１
-                case Y:
+                case 'Y':
                   $empty_number = $empty_number +1;
                   break;
                 // $value->statusの値がNならBreak
-                case N:
+                case 'N':
                   break;
               }
       }
-      echo    '<h4>男子トイレの空きは残り<font size="5" color="#ff0000">'.$empty_number.'</font>室！　走れ！!</h4>';
+      echo '<h4>男子トイレの空きは残り<font size="5" color="#ff0000">'.$empty_number.'</font>室！　走れ！!</h4>';
       //ここに見取り図を貼る
-      echo '  <img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />';
+      echo '<img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />';
   }
           if (count($result->records)) {
               // テーブルタグ出力
@@ -56,11 +56,11 @@
               foreach ($result->records as $key => $value) {
                   switch ($value->status) {
                     // $value->statusの値がYなら、○を出力
-                    case Y:
+                    case 'Y':
                       echo '<td>○</td>';
                       break;
                     // $value->statusの値がNなら、×を出力
-                    case N:
+                    case 'N':
                       echo '<td>×</td>';
                       break;
                   }
