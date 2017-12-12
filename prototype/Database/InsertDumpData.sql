@@ -32,31 +32,37 @@ INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (2,
         'Y',
         '2017-11-11 12:20:20');
-        
+
+
 INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (1,
         'N',
         '2017-11-11 12:20:30');
+
 
 INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (3,
         'Y',
         '2017-11-11 12:30:30');
 
+
 INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (2,
         'N',
         '2017-11-11 12:30:40');
+
 
 INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (4,
         'Y',
         '2017-11-11 12:40:40');
 
+
 INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (3,
         'N',
         '2017-11-11 12:40:50');
+
 
 INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (4,
@@ -105,15 +111,18 @@ VALUES (3,
         'N',
         '2017-11-11 15:10:00');
 
+
 INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (1,
         'Y',
         '2017-11-11 15:15:00');
 
+
 INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (4,
         'N',
         '2017-11-11 15:20:00');
+
 
 INSERT INTO `compartment`(`comp_id`, `Status`, `upd_dt`)
 VALUES (3,

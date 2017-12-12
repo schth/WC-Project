@@ -37,4 +37,3 @@ if ($num > 0) {
         array("message" => "No compartments found.")
     );
 }
-?>

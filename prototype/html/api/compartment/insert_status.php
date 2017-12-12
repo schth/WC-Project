@@ -22,19 +22,17 @@ if ($_SERVER["REQUEST_METHOD"]==="POST") {
 
         //insert文の実行結果を判定
         if ($result) {
-          //tureの場合
-          echo "New record created successfully";
+            //tureの場合
+            echo "New record created successfully";
         } else {
-          //falseの場合
-          echo  "Record insert error";
+            //falseの場合
+            echo  "Record insert error";
         }
-
     } else {
-      //POSTされたデータに入力されていない項目がある場合
+        //POSTされたデータに入力されていない項目がある場合
         echo "入力されていない項目があります。";
     }
 } else {
     //POSTメソッド以外で接続された場合
     # code...
 }
-?>

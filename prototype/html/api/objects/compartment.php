@@ -33,7 +33,7 @@ class Compartment
         return $stmt;
     }
 
-     public function insert($comp_id,$status)
+    public function insert($comp_id, $status)
     {
         //現在日付時刻を変数に格納
         date_default_timezone_set('Asia/Tokyo');
@@ -45,8 +45,5 @@ class Compartment
 
         // insert文の実行結果を返す
         return $result;
-
-      }
+    }
 }
-
-?>

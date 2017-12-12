@@ -32,4 +32,3 @@ class Database
         return $connection;
     }
 }
-?>
