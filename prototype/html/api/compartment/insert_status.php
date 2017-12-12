@@ -36,3 +36,4 @@ if ($_SERVER["REQUEST_METHOD"]==="POST") {
     //POSTメソッド以外で接続された場合
     # code...
 }
+?>

@@ -47,3 +47,4 @@ class Compartment
         return $result;
     }
 }
+?>
