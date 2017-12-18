@@ -19,15 +19,7 @@ SELECT a.seq_id,
       FROM compartment b
       WHERE b.comp_id=a.comp_id
         AND b.seq_id > a.seq_id
-<<<<<<< HEAD
       ORDER BY b.seq_id
       LIMIT 1) AS time2
    FROM compartment a
    ORDER BY seq_id;
-=======
-        AND b.status != a.status
-      ORDER BY b.seq_id
-      LIMIT 1) AS time2
-   FROM compartment a
-   ORDER BY seq_id) c;
->>>>>>> ea7f422860d1a3c8c480713bf558da842bfa5405
