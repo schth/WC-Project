@@ -42,7 +42,7 @@ room4_before_status = False
 def send_wc_status(wc_status):
     requests.post('http://localhost/api/compartment/insert_status.php', data=wc_status)
 
-def get_current_status(current_sensor_value):
+def judge_current_status(current_sensor_value):
     if current_sensor_value < sensor_threhold_value:
         #ドアが空いている
         return True
@@ -50,7 +50,7 @@ def get_current_status(current_sensor_value):
         #ドアが空いていない
         return False
 
-def is_status_changed(current_sensor_status):
+def is_status_changed(room_before_status,current_sensor_status):
     if room_before_status != current_sensor_status:
         return True
     elif room_before_status == current_sensor_status:
@@ -63,13 +63,13 @@ while 1:
     # 「;」で分割する
     m = str(data).split(";")
     if (len(m) == 13):
-        if m[5] == "10e27d0":
-            sensor_id = "10e27d0"
-            current_sensor_value = int(m[9])
-            current_sensor_status = get_current_status(current_sensor_value)
+        sensor_id = m[5]#センサーIDを取得
+        current_sensor_value = int(m[9])#センサーの値を取得
+        current_sensor_status = judge_current_status(current_sensor_value)#センサーの値からドアの状況を判定
+        if sensor_id == "10e27d0":
 
-            if is_status_changed(current_sensor_status) == True:
-                comp_id = 1  
+            if is_status_changed(room1_before_status,current_sensor_status) == True:
+                comp_id = 1
                 # ドアが空いている場合、statusをYに設定
                 status = 'Y'
                 wc_status = {'g_id': comp_id, 'g_status': status}
