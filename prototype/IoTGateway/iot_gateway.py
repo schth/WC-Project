@@ -9,12 +9,12 @@ import requests
 
 try:
     # COM5を開く windows用
-    s = serial.Serial("COM5", 115200)
+    #s = serial.Serial("COM5", 115200)
 
     # Mac用
-    #s = serial.Serial("/dev/tty.usbserial-MW1IQ8BN", 115200)
+    s = serial.Serial("/dev/tty.usbserial-MW1IQ8BN", 115200)
     s.isOpen()
-    print ("Port is opened!")
+    print("Port is opened!")
 except IOError:
     s.close()
     s.open()
@@ -23,124 +23,61 @@ except IOError:
 # センサーの閾値
 sensor_threhold_value = 1000
 
-room1_device_id = "10e27d0"
-room1_current_status = False#個室が利用できるかどうか
-room1_before_status = False#以前の状態を記録
+# センサー（個室）の状態をNで初期化
+comp_status = {'10e27d0': 'N', '10e3533': 'N', '10e29b1': 'N', '10e34ee': 'N'}
 
-room2_device_id = "10e3533"
-room2_current_status = False
-room2_before_status = False
-
-room3_device_id = ""
-room3_current_status = False
-room3_before_status = False
-
-room4_device_id = ""
-room4_current_status = False
-room4_before_status = False
-
+# APIサーバーにデータをPOSTする
 def send_wc_status(wc_status):
-    requests.post('http://localhost/api/compartment/insert_status.php', data=wc_status)
+    payload = wc_status
+    response = requests.post(
+        'http://localhost/api/compartment/insert_status.php', data=payload)
+    print(response.text)
 
-def judge_current_status(current_sensor_value):
+# センサーの値からドアの状態を判断
+def convert_comp_status(current_sensor_value):
     if current_sensor_value < sensor_threhold_value:
-        #ドアが空いている
-        return True
+        # ドアが空いている
+        return 'Y'
     elif current_sensor_value > sensor_threhold_value:
-        #ドアが空いていない
+        # ドアが空いていない
+        return 'N'
+
+# ドアの状態に変化があるかをを判断
+def is_status_changed(before_comp_status, current_comp_status):
+    if before_comp_status != current_comp_status:
+        return True
+    elif before_comp_status == current_comp_status:
         return False
 
-def is_status_changed(room_before_status,current_sensor_status):
-    if room_before_status != current_sensor_status:
-        return True
-    elif room_before_status == current_sensor_status:
-        return False
 
 while 1:
     # 1行読み取る
     data = s.readline()
-    #print(data)
+    # print(data)
     # 「;」で分割する
     m = str(data).split(";")
     if (len(m) == 13):
-        sensor_id = m[5]#センサーIDを取得
-        current_sensor_value = int(m[9])#センサーの値を取得
-        current_sensor_status = judge_current_status(current_sensor_value)#センサーの値からドアの状況を判定
-        if sensor_id == "10e27d0":
-
-            if is_status_changed(room1_before_status,current_sensor_status) == True:
-                comp_id = 1
-                # ドアが空いている場合、statusをYに設定
-                status = 'Y'
-                wc_status = {'g_id': comp_id, 'g_status': status}
-                send_wc_status
-            room1_before_status = room1_current_status
-
-            if current_sensor_value < sensor_threhold_value:#ドアが空いている場合
-                room1_current_status = True
-                if room1_before_status != room1_current_status:
-                    timestamp = datetime.datetime.now().strftime("%Y/%m/%d %I:%M:%S ")
-                    print(timestamp + " " + m[5] + ": is opened !")
-                    # 取得した値を変数に格納
-                    comp_id = 1  # ここをusbから取得した値にしたい
-                    # ドアが空いている場合、statusをYに設定
-                    status = 'Y'  # ここをusbから取得した値にしたい
-                    wc_status = {'g_id': comp_id, 'g_status': status}
-                    # httpプロトコルでpost通信
-                    response = requests.post('http://localhost/api/compartment/insert_status.php', data=wc_status)
-                    #レスポンスのHTMLを文字列で取得
-                    print(response.text)
-                    room1_before_status = room1_current_status
-
-            elif current_sensor_value > sensor_threhold_value:#ドアが閉じている場合（個室が利用されている）
-                room1_current_status = False
-                if room1_before_status != room1_current_status:
-                    timestamp = datetime.datetime.now().strftime("%Y/%m/%d %I:%M:%S")
-                    print(timestamp + " " + m[5] + ": is closed !")
-                    # 取得した値を変数に格納
-                    comp_id = 1  # ここをusbから取得した値にしたい
-                    status = 'N'  # ここをusbから取得した値にしたい
-                    wc_status = {'g_id': comp_id, 'g_status': status}
-                    # httpプロトコルでpost通信
-                    response = requests.post('http://localhost/api/compartment/insert_status.php', data=wc_status)
-                    #レスポンスのHTMLを文字列で取得
-                    print(response.text)
-                    room1_before_status = room1_current_status
-        #print ("送信元シリアル番号："+m[5]+" / 送信元電源電圧："+m[6]+" / センサー電流："+m[9])
-
-        if m[5] == "10e27d0":
+        print("送信元シリアル番号：" + m[5] + " / 送信元電源電圧：" + m[6] + " / センサー電流：" + m[9])
+        # 送信元のシリアルIDを取得
+        sensor_id = m[5]
+        if sensor_id in sensor:
+            # センサーの値を取得
             current_sensor_value = int(m[9])
-            #センサーの値を閾値と比較
-            if current_sensor_value < sensor_threhold_value:#ドアが空いている場合
-                room1_current_status = True
-                if room1_before_status != room1_current_status:
-                    timestamp = datetime.datetime.now().strftime("%Y/%m/%d %I:%M:%S ")
-                    print(timestamp + " " + m[5] + ": is opened !")
-                    # 取得した値を変数に格納
-                    comp_id = 1  # ここをusbから取得した値にしたい
-                    # ドアが空いている場合、statusをYに設定
-                    status = 'Y'  # ここをusbから取得した値にしたい
-                    wc_status = {'g_id': comp_id, 'g_status': status}
-                    # httpプロトコルでpost通信
-                    response = requests.post('http://localhost/api/compartment/insert_status.php', data=wc_status)
-                    #レスポンスのHTMLを文字列で取得
-                    print(response.text)
-                    room1_before_status = room1_current_status
-
-            elif current_sensor_value > sensor_threhold_value:#ドアが閉じている場合（個室が利用されている）
-                room1_current_status = False
-                if room1_before_status != room1_current_status:
-                    timestamp = datetime.datetime.now().strftime("%Y/%m/%d %I:%M:%S")
-                    print(timestamp + " " + m[5] + ": is closed !")
-                    # 取得した値を変数に格納
-                    comp_id = 1  # ここをusbから取得した値にしたい
-                    status = 'N'  # ここをusbから取得した値にしたい
-                    wc_status = {'g_id': comp_id, 'g_status': status}
-                    # httpプロトコルでpost通信
-                    response = requests.post('http://localhost/api/compartment/insert_status.php', data=wc_status)
-                    #レスポンスのHTMLを文字列で取得
-                    print(response.text)
-                    room1_before_status = room1_current_status
-                #print ("送信元シリアル番号："+m[5]+" / 送信元電源電圧："+m[6]+" / センサー電流："+m[9])
+            # センサーのバッテリーを取得
+            current_sensor_battery = int(m[6])
+            # センサーが設置されている個室の直前の状態を取得
+            before_comp_status = comp_status[sensor_id]
+            # センサーの値から個室の状態を取得
+            current_comp_status = convert_comp_status(current_sensor_value)
+            print("before_comp_status:" + comp_status[sensor_id])
+            # 個室の状態に変化があった場合
+            if is_status_changed(before_comp_status, current_comp_status) == True:
+                wc_status = {'g_id': sensor_id,'g_status': current_comp_status,
+                             'g_battery': current_sensor_battery}
+                # 個室の状態をAPIサーバーPOSTする
+                send_wc_status(wc_status)
+                # 個室の直前の状態を現在の状態に更新する
+                comp_status[sensor_id] = current_comp_status
+                print("before_comp_status(changed to):" + comp_status[sensor_id])
 
 s.close()
