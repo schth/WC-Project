@@ -60,7 +60,7 @@ while 1:
         print("送信元シリアル番号：" + m[5] + " / 送信元電源電圧：" + m[6] + " / センサー電流：" + m[9])
         # 送信元のシリアルIDを取得
         sensor_id = m[5]
-        if sensor_id in sensor:
+        if sensor_id in comp_status:
             # センサーの値を取得
             current_sensor_value = int(m[9])
             # センサーのバッテリーを取得
