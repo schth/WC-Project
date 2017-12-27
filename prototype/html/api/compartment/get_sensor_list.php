@@ -24,9 +24,12 @@ $num = mysqli_num_rows($stmt);
 if ($num > 0) {
     // 配列設定
     $sensors_arr=array();
-	
+    $sensors_arr["records"]=array();
+
     while ($row = mysqli_fetch_assoc($stmt)) {
-		array_push($sensors_arr, $row);
+		//array_push($sensors_arr, $row);
+    //array_push($sensors_arr, array($row['sensor_id'] => $row['status']));
+    array_push($sensors_arr["records"], $row);
 		}
     //compartments_arrの要素をJSON 形式にした文字列を返します
     echo json_encode($sensors_arr);
