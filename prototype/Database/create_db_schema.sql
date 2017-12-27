@@ -4,10 +4,10 @@ USE wc;
 
 -- Master Table
 CREATE TABLE IF NOT EXISTS sensor_comp (
-  sensor_id varchar(10),
-  floor int(10),
-  gender int(1),-- 1:Male 2:Feamale
-  comp_id int(4),
+  sensor_id VARCHAR(10),
+  floor INT(10),
+  gender INT(1),-- 1:Male 2:Feamale
+  comp_id INT(4),
   PRIMARY KEY (sensor_id)
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS events (
   status VARCHAR(1),
   upd_dt DATETIME,
   sensor_battery INT(5),
-  FOREIGN KEY(sensor_id) references sensor_comp(sensor_id),
+  FOREIGN KEY(sensor_id) REFERENCES sensor_comp(sensor_id),
   PRIMARY KEY (sensor_id,
                upd_dt)
 );
