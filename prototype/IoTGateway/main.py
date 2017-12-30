@@ -6,8 +6,9 @@ from function import is_status_changed
 from function import get_sensor_list
 import pprint
 
+
 def main():
-    '''シリアルポートを接続'''
+    # シリアルポートを接続
     serial_connection = open_serial_port()
     '''
     センサー（個室）の状態をNで初期化
@@ -37,7 +38,8 @@ def main():
                 # センサーの値から現在の個室の状態を割り出す
                 current_comp_status = convert_comp_status(current_sensor_value)
 
-                print('before_comp_status:' + comp_status[sensor_id] + '/'+ 'current_comp_status:' + current_comp_status)
+                print(
+                    'before_comp_status:' + comp_status[sensor_id] + '/' + 'current_comp_status:' + current_comp_status)
 
                 # 個室の状態に変化があった場合、データをAPIサーバーにPOSTして、DBを更新する
                 if is_status_changed(before_comp_status, current_comp_status):
@@ -50,8 +52,9 @@ def main():
                     comp_status[sensor_id] = current_comp_status
                     print('before_comp_status(changed to):' + comp_status[sensor_id])
 
+
 if __name__ == '__main__':
     try:
         main()
     except Exception as e:
-        print('[ERROR OCCURRED]:',e)
+        print('[ERROR OCCURRED]:', e)

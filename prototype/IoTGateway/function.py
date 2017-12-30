@@ -10,9 +10,9 @@ import pprint
 from serial.tools import list_ports
 import sys
 
-'''pyserialでシリアルポートを自動認識して接続する'''
-def open_serial_port():
 
+# pyserialでシリアルポートを自動認識して接続する
+def open_serial_port():
     """
     参考URL: pyserial公式ドキュメント
     [1]サイトトップ http://pythonhosted.org/pyserial/
@@ -22,31 +22,31 @@ def open_serial_port():
     # COM5を開く windows用
     serial_connection = serial.Serial()
     serial_connection.baudrate = 115200
-    ports = list_ports.comports()	# ポートデータを取得
+    ports = list_ports.comports()  # ポートデータを取得
     devices = []
     for info in ports:
-        devices.append(info.device)	# ポートの名前を取得
+        devices.append(info.device)  # ポートの名前を取得
     if len(devices) == 0:
-    # シリアル通信できるデバイスが見つからなかった場合
+        # シリアル通信できるデバイスが見つからなかった場合
         print("error: device not found")
         sys.exit(0)
     elif len(devices) == 1:
-        serial_connection.port = devices[0]	# ポートを指定
+        serial_connection.port = devices[0]  # ポートを指定
     else:
         for i in range(len(devices)):
-            print("input " + str(i)+":\topen "+devices[i])
+            print("input " + str(i) + ":\topen " + devices[i])
             # 開くポートを指定する
-        print("input number of target port\n>> ",end="")
+        print("input number of target port\n>> ", end="")
         num = int(input())
-        serial_connection.port = devices[num]	# ポートを指定
+        serial_connection.port = devices[num]  # ポートを指定
 
     try:
         # ポートを開いてみる
         serial_connection.open()
-        print("open >>>>>> " + serial_connection.port )
+        print("open >>>>>> " + serial_connection.port)
         return serial_connection
-    except:
-        print("can't open " + serial_connection.port )
+    except serial_connection.SerialException as e:
+        print("can't open " + serial_connection.port)
         sys.exit(0)
         # Mac用
         # s = serial.Serial('/dev/tty.usbserial-MW1IQ8BN', 115200)
