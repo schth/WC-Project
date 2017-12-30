@@ -35,17 +35,18 @@ def open_serial_port():
     else:
         for i in range(len(devices)):
             print("input " + str(i)+":\topen "+devices[i])
-    # 開くポートを指定する
-    print("input number of target port\n>> ",end="")
-    num = int(input())
-    serial_connection.port = devices[num]	# ポートを指定
+            # 開くポートを指定する
+        print("input number of target port\n>> ",end="")
+        num = int(input())
+        serial_connection.port = devices[num]	# ポートを指定
 
     try:
+        # ポートを開いてみる
         serial_connection.open()
-        print("open " + serial_connection.port )
+        print("open >>>>>> " + serial_connection.port )
         return serial_connection
     except:
-        print("can't open" + serial_connection.port )
+        print("can't open " + serial_connection.port )
         sys.exit(0)
         # Mac用
         # s = serial.Serial('/dev/tty.usbserial-MW1IQ8BN', 115200)
@@ -61,7 +62,7 @@ def send_wc_status(wc_status):
     api_url = 'http://localhost/api/compartment/insert_status.php'
     payload = wc_status
     response = requests.post(api_url, data=payload)
-    pprint.pprint(response.text)
+    print(response.text)
 
 
 # センサーの値からドアの状態を変換する
