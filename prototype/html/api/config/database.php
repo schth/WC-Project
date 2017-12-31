@@ -21,13 +21,14 @@ class Database
                 // 管理者に連絡,
                 // エラーをログに吐き出す,
                 // エラースクリーンを表示させる, など
-                throw new Exception("Connect failed: %s\n", mysqli_connect_error());
-                return mysqli_connect_error();
+                throw new Exception('Unable to connect');
+                //return mysqli_connect_error();
             }
         } catch (Exception $e) {
-            echo $e->getMessage();
+            echo $e->getMessage() , ' : ';
             // コネクションクローズ
-            mysqli_close($connection);
+            //mysqli_close($connection);
+            die(mysqli_connect_error());
         }
         return $connection;
     }
