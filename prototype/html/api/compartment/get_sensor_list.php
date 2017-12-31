@@ -33,9 +33,9 @@ if ($num > 0) {
 		}
     //compartments_arrの要素をJSON 形式にした文字列を返します
     echo json_encode($sensors_arr);
-	} else {
-		echo json_encode(
-		array("message" => "No sensor found.")
-		);
-		}
+} else {
+	echo json_encode(
+	array("message" => "No sensor found.")
+	);
+	}
 ?>
