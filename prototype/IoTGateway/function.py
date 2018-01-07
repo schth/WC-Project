@@ -96,6 +96,7 @@ def is_status_changed(before_comp_status, current_comp_status):
         return False
 
 
+# DBからセンサーの最新状態を取得
 def get_sensor_list():
     """
 
@@ -104,6 +105,7 @@ def get_sensor_list():
     # GET先
     api_url = 'http://localhost/api/compartment/get_sensor_list.php'
     response = requests.get(api_url)
-    dic_response = {d['sensor_id']: d['status'] for d in json.loads(response.text)['records']}
+    dic_response = {d['sensor_id']: d['status']
+                    for d in json.loads(response.text)['records']}
     pprint.pprint(dic_response.keys())
     return dic_response

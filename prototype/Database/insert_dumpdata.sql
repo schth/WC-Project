@@ -4,8 +4,8 @@ INSERT INTO sensor_comp(sensor_id, floor, gender,comp_id)VALUES ('10e27d0', 2, 1
 INSERT INTO sensor_comp(sensor_id, floor, gender,comp_id)VALUES ('10e3533', 2, 1, 2);
 INSERT INTO sensor_comp(sensor_id, floor, gender,comp_id)VALUES ('10e29b1', 2, 1, 3);
 INSERT INTO sensor_comp(sensor_id, floor, gender,comp_id)VALUES ('10e34ee', 2, 1, 4);
--- トランザクションデータ
 
+-- トランザクションデータ
 INSERT INTO events(sensor_id, status, upd_dt)VALUES ('10e27d0','N','2017-11-11 12:00:00');
 INSERT INTO events(sensor_id, status, upd_dt)VALUES ('10e3533','N','2017-11-11 12:00:00');
 INSERT INTO events(sensor_id, status, upd_dt)VALUES ('10e29b1','N','2017-11-11 12:00:00');
