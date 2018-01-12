@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS events (
   PRIMARY KEY (sensor_id,
                upd_dt)
 );
-
+/*
 CREATE VIEW visit AS
 SELECT a.seq_id,
           a.sensor_id,
@@ -36,3 +36,4 @@ SELECT a.seq_id,
       LIMIT 1) AS time2
    FROM events a
    ORDER BY seq_id;
+*/
