@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta name="generator"
@@ -8,6 +8,64 @@
     <link rel="stylesheet" href="css/wc.css" />
   </head>
 
+<!--
+
+                                                                                                                                                                         ((-..
+                                                                                                                                                                         ??TWke+-
+                                                                                                                                                                       .(--.._?TX+.
+                                                                                                                                                                        ~??wA+  ?ww.
+                                                                                                                                                                      (zu+..?4A- (Ok.
+                                                                                                                                                                        _?Xo--Ow_ (H<
+                                                                                                                                                            ....    (gQs- (dl (f: (Sz.
+                                                                                                                                                         .uXHHHHko-.vHHKC  dl (f: (K>`
+                                                                                                                                                       .(HMMMgggggk+ ??!   _` ~<` ($`
+                                                                                                                                                       (XMMMgggggggK`
+                                                                                                                                                       (X@@gggggggHD
+                                                                                                                                                        (WHgggg@ggS>
+                                                                                                                                                         _7WHHHH9C!
+                                                                                                                                                           -(<<<_.
+                                                                                                                                                       .JdNMMMMMMNm.
+                                                                                                                                                     .(dMMMMMMMMMMMHo-
+                                                                                                                                                    (dMMMMMMMMMMMM@gHk+.
+                                                                                                                                                  .dMMMMMMMMMMMMMgggggHk-
+                                                                                                                                                .qMMMMMMMMMMMM@gggggggggHx-
+                                                                                                                                                dMMMMB=zHMMM@ggggggHzTHggHk_
+                                                                                                                                                ?TYY!` (WMMggggggggK< ?OU9C`
+                                                                                                                                                       JgggggggggggHc.
+                                                                                                                                                      (dg@ggggg@gg@Hk_
+                                                                                                                                                      jWggg@HWWHggggH_
+                                                                                                                                                     (dggggg$<zHggggH>.
+                                                                                                                                                     jWg@gH9> .WHgggHk_
+                                                                                                                                                    .dgg@gHC`  vWg@@HH{
+                                                                                                                                                    jW@HMN9!   (dggHMMr
+                                                                                                                                                    ?MMNMB!     ?WMMMB>
+                                                                                                                                                     `~!!`       _?<!`
+
+
+                                                                                                                                                                           ` `  . `
+                     ..J+gQQQk>                          ....(J+gs-                                        ..............                  ` .........                   .  (+..dHe.
+                     (WMMMMMM#>                          (UMMMMMMN{    ..Jggggggg&-.                       `??TMMMMMMNNNNmax-             ` jWNNNMMMR~ (+++++++++++++++&gNm<(HNmvdMR<
+                      dMMMMMMK:            ``             (MMMMMMN{..JgHHBYYYYMMMMMNm+.                         ?TMMMMMMMMMMm-              -dMMMMMNI` (WMMBYYYYYYYYYYYYYYY=<vMNl?HM3`
+            (((((((((JdMMMMMMR-............Qm&.           (MMMMMMNmWMB>~`     _?MMMMMMH;                 ...       ?TMMMMMMMMD              (dMMMMM#C`   ~`        ((igQQNN{ (UY!  `
+            ?HMMHYYYYTMMMMMMMMMHHHHHHHHHHHHHH93-          (MMMMMMMMY!           vMMMMMMk<         .J&&ggggmm;         ?WMMMMB>              (XMMMMM#<              ?UMMMMMM}
+             _<!      dMMMMMM$~                           (MMMMMMM{             (MMMMMMMb.         _OMMMMMMM{           `<<!`               (XMMMMM#!               (MMMMMM}   ..
+                      dMMMMMM$_                           (MMMMMMN{              dMMMMMMN>          .MMMMMMH:                               jMMMMMM#  -(JJJJJJJJJJJJdMMMMMMmJ+gQm+
+                     .XMMMMMM}                            (MMMMMMN{              dMMMMMMNS          (MMMMMNS~                               jMMMMMM@  _ZMMHYYYYYYYYWHMMMMMM9TTTTT=!
+            ..........WMMMMMMl..............jQ+.          (MMMMMMN{              dMMMMMMMR          (MMMMMNS~                               dMMMMMMD    `!          (MMMMMM}
+            vHNNWUUUUWMMMMMMMMqqqqqqqqqqqqHMMMMk-         (MMMMMMN{              dMMMMMMMR         .dMMMMMN$_    .(J+gggggggg&J--.          dMMMMMMD                (MMMMMM}
+             ?C!`    (MMMMMMM>``````````````````          (MMMMMMN{              dMMMMMMM$         .dMMMMMNI-.+qHMMMMMMMMMMMMMMMNm&.       .dMMMMMNC                (MMMMMM}
+                     .MMMMMMN{                            (MMMMMMN{              dMMMMMM#>         (XMMMMMMNNMB=!~`        ?WMMMMMNm-      (dMMMMMNI                (MMMMMM}
+                     .MMMMMMN{                            (MMMMMMN{             .dMMMMMMD~         (HMMMMMMMY!               dMMMMMMN<     (dMMMMMNI      ...J++++++gMMMMMM}
+                     .MMMMMMN{                   (.       (MMMMMMM{             jMMMMMMM$          (HMMMMMM>`                (MMMMMMN0_    (dMMMMMNI    .+gMMMMB=7??TMMMMMMl.
+                     .MMMMMMN{                `.+X:      ` _~~~~~`             .WMMMMMMD!           _~~~~~~                  (MMMMMMNS~    (dMMMMMNI   (dMMMMM8`    (MMMMMMMNm+.
+                     .HMMMMMNl.              .(dN>                            .dMMMMMM9!                                    .dMMMMMM#C`     dMMMMMNI   JMMMMMNI     (MMMMMMMMMMNm+
+                      dMMMMMMNm.         .(JgMM#$`                           (dMMMMM#Y`                                    .dMMMMMMMB~      dMMMMMMR   JMMMMMNI     (MMMMMM8WMMMMNI
+                      (HMMMMMMMNNHQQQQQQNNMMMM#3                          ..dMMMMMMY!               ` vX&...           ...dMMMMMMMM9`       jMMMMMM#-..jMMMMMNR.    (MMMMMM} ?MMMMC
+                        ?MMMMMMMMMMMMMMMMMMMMY!                         .JgMMMMM97`                    ?7WNmgg&&&&&&&&ggNMMMMMMMMY!         -dMMMMMMNH: ?MMMMMNe-  .dMMMMM=`  ?MMD`
+                          ?THMMMMMMMMMMMMB9>`                     ...JgWMMMH9=!                           -?TMMMMMMMMMMMMMMMM9=!             (TMMMMMB>`  .7TMMMMMMMMMMM9=`      `
+                             `~!!!!!!!!~`                         (?77??!~`                                   `!??????????!~`                  ????!`        _!!!!!!!~`
+
+ -->
   <body>
     <h1>Watcher of Compartment</h1>
     <h3>～トイレとお腹の渋滞緩和から始める働き方改革～</h3>
@@ -74,9 +132,11 @@
     </div>
   </body>
 
-<footer>
+<div id="footer">
+<nav>
 <a href="privacyguide.html">プライバシーガイド</a>
-<p>Copyright 2017</p>
-</footer>
+</nav>
+<p><small>&copy; 2018 MOLIS Laboratory</small></p>
+</div>
 
 </html>

@@ -81,3 +81,13 @@ table#smp1 tr th {
   background: #e6eaff;
   /*th（見出し）だけ背景色を付けてます*/
 }
+#footer {
+    position: center;
+    font-family: Century Gothic, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    color : #000;
+    font-size:1.0em;
+    text-align : center;
+}
