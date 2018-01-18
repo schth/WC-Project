@@ -37,9 +37,13 @@ def open_serial_port():
             print("input " + str(i) + ":\topen " + devices[i])
             # 開くポートを指定する
         print("input number of target port\n>> ", end="")
-        num = int(input())
-        serial_connection.port = devices[num]  # ポートを指定
-
+        while 1:
+            try:
+                num = int(input())
+                serial_connection.port = devices[num]  # ポートを指定
+                break
+            except Exception as e:
+                print ('index out of range')
     try:
         # ポートを開いてみる
         serial_connection.open()
@@ -107,5 +111,5 @@ def get_sensor_list():
     response = requests.get(api_url)
     dic_response = {d['sensor_id']: d['status']
                     for d in json.loads(response.text)['records']}
-    pprint.pprint(dic_response.keys())
+    #pprint.pprint(dic_response.keys())
     return dic_response
