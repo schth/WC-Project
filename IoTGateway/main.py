@@ -5,6 +5,9 @@ from function import convert_comp_status
 from function import is_status_changed
 from function import get_sensor_list
 import pprint
+import traceback
+import sys
+import requests
 
 
 def main():
@@ -17,6 +20,7 @@ def main():
     comp_status = {'10e27d0': 'N', '10e3533': 'N', '10e29b1': 'N', '10e34ee': 'N'}
     '''
     comp_status = get_sensor_list()
+    pprint.pprint(comp_status)
 
     while 1:
         # 1行読み取る
@@ -56,5 +60,15 @@ def main():
 if __name__ == '__main__':
     try:
         main()
+    except requests.exceptions.ConnectionError:
+        print('requests.exceptions.ConnectionError')
     except Exception as e:
-        print('[ERROR OCCURRED]:', e)
+        ex, ms, tb = sys.exc_info()
+        print("\nex -> \t", type(ex))
+        print(ex)
+        print("\nms -> \t", type(ms))
+        print(ms)
+        print("\ntb -> \t", type(tb))
+        print(tb)
+        print("\n=== and print_tb ===")
+        traceback.print_tb(tb)
