@@ -9,62 +9,33 @@
   </head>
 
 <!--
+                                                                                    .1&..
+                                                                                    71._C,
+                                                                                   _7&_6.z-
+                                                                             .J+..dH}()(:(>
+                                                                            dMgggH       _
+                                                                            vHgggK
+                                                                             (z7>
+                                                                           .MMMMMN,
+                    私達と一緒に「もりらぼ」しませんか？                 .dMMMMMMggm.
+                                                                        dMM9MMMgggTHHo
+                                                                         ` .Hggggg; !`
+                                                                           jggHHggb
+                                                                          .XgH{(HgR_
+                                                                          (HND  4@M)
+                                                                          .7=   ."=
 
-                                                                                                                                                                         ((-..
-                                                                                                                                                                         ??TWke+-
-                                                                                                                                                                       .(--.._?TX+.
-                                                                                                                                                                        ~??wA+  ?ww.
-                                                                                                                                                                      (zu+..?4A- (Ok.
-                                                                                                                                                                        _?Xo--Ow_ (H<
-                                                                                                                                                            ....    (gQs- (dl (f: (Sz.
-                                                                                                                                                         .uXHHHHko-.vHHKC  dl (f: (K>`
-                                                                                                                                                       .(HMMMgggggk+ ??!   _` ~<` ($`
-                                                                                                                                                       (XMMMgggggggK`
-                                                                                                                                                       (X@@gggggggHD
-                                                                                                                                                        (WHgggg@ggS>
-                                                                                                                                                         _7WHHHH9C!
-                                                                                                                                                           -(<<<_.
-                                                                                                                                                       .JdNMMMMMMNm.
-                                                                                                                                                     .(dMMMMMMMMMMMHo-
-                                                                                                                                                    (dMMMMMMMMMMMM@gHk+.
-                                                                                                                                                  .dMMMMMMMMMMMMMgggggHk-
-                                                                                                                                                .qMMMMMMMMMMMM@gggggggggHx-
-                                                                                                                                                dMMMMB=zHMMM@ggggggHzTHggHk_
-                                                                                                                                                ?TYY!` (WMMggggggggK< ?OU9C`
-                                                                                                                                                       JgggggggggggHc.
-                                                                                                                                                      (dg@ggggg@gg@Hk_
-                                                                                                                                                      jWggg@HWWHggggH_
-                                                                                                                                                     (dggggg$<zHggggH>.
-                                                                                                                                                     jWg@gH9> .WHgggHk_
-                                                                                                                                                    .dgg@gHC`  vWg@@HH{
-                                                                                                                                                    jW@HMN9!   (dggHMMr
-                                                                                                                                                    ?MMNMB!     ?WMMMB>
-                                                                                                                                                     `~!!`       _?<!`
-
-
-                                                                                                                                                                           ` `  . `
-                     ..J+gQQQk>                          ....(J+gs-                                        ..............                  ` .........                   .  (+..dHe.
-                     (WMMMMMM#>                          (UMMMMMMN{    ..Jggggggg&-.                       `??TMMMMMMNNNNmax-             ` jWNNNMMMR~ (+++++++++++++++&gNm<(HNmvdMR<
-                      dMMMMMMK:            ``             (MMMMMMN{..JgHHBYYYYMMMMMNm+.                         ?TMMMMMMMMMMm-              -dMMMMMNI` (WMMBYYYYYYYYYYYYYYY=<vMNl?HM3`
-            (((((((((JdMMMMMMR-............Qm&.           (MMMMMMNmWMB>~`     _?MMMMMMH;                 ...       ?TMMMMMMMMD              (dMMMMM#C`   ~`        ((igQQNN{ (UY!  `
-            ?HMMHYYYYTMMMMMMMMMHHHHHHHHHHHHHH93-          (MMMMMMMMY!           vMMMMMMk<         .J&&ggggmm;         ?WMMMMB>              (XMMMMM#<              ?UMMMMMM}
-             _<!      dMMMMMM$~                           (MMMMMMM{             (MMMMMMMb.         _OMMMMMMM{           `<<!`               (XMMMMM#!               (MMMMMM}   ..
-                      dMMMMMM$_                           (MMMMMMN{              dMMMMMMN>          .MMMMMMH:                               jMMMMMM#  -(JJJJJJJJJJJJdMMMMMMmJ+gQm+
-                     .XMMMMMM}                            (MMMMMMN{              dMMMMMMNS          (MMMMMNS~                               jMMMMMM@  _ZMMHYYYYYYYYWHMMMMMM9TTTTT=!
-            ..........WMMMMMMl..............jQ+.          (MMMMMMN{              dMMMMMMMR          (MMMMMNS~                               dMMMMMMD    `!          (MMMMMM}
-            vHNNWUUUUWMMMMMMMMqqqqqqqqqqqqHMMMMk-         (MMMMMMN{              dMMMMMMMR         .dMMMMMN$_    .(J+gggggggg&J--.          dMMMMMMD                (MMMMMM}
-             ?C!`    (MMMMMMM>``````````````````          (MMMMMMN{              dMMMMMMM$         .dMMMMMNI-.+qHMMMMMMMMMMMMMMMNm&.       .dMMMMMNC                (MMMMMM}
-                     .MMMMMMN{                            (MMMMMMN{              dMMMMMM#>         (XMMMMMMNNMB=!~`        ?WMMMMMNm-      (dMMMMMNI                (MMMMMM}
-                     .MMMMMMN{                            (MMMMMMN{             .dMMMMMMD~         (HMMMMMMMY!               dMMMMMMN<     (dMMMMMNI      ...J++++++gMMMMMM}
-                     .MMMMMMN{                   (.       (MMMMMMM{             jMMMMMMM$          (HMMMMMM>`                (MMMMMMN0_    (dMMMMMNI    .+gMMMMB=7??TMMMMMMl.
-                     .MMMMMMN{                `.+X:      ` _~~~~~`             .WMMMMMMD!           _~~~~~~                  (MMMMMMNS~    (dMMMMMNI   (dMMMMM8`    (MMMMMMMNm+.
-                     .HMMMMMNl.              .(dN>                            .dMMMMMM9!                                    .dMMMMMM#C`     dMMMMMNI   JMMMMMNI     (MMMMMMMMMMNm+
-                      dMMMMMMNm.         .(JgMM#$`                           (dMMMMM#Y`                                    .dMMMMMMMB~      dMMMMMMR   JMMMMMNI     (MMMMMM8WMMMMNI
-                      (HMMMMMMMNNHQQQQQQNNMMMM#3                          ..dMMMMMMY!               ` vX&...           ...dMMMMMMMM9`       jMMMMMM#-..jMMMMMNR.    (MMMMMM} ?MMMMC
-                        ?MMMMMMMMMMMMMMMMMMMMY!                         .JgMMMMM97`                    ?7WNmgg&&&&&&&&ggNMMMMMMMMY!         -dMMMMMMNH: ?MMMMMNe-  .dMMMMM=`  ?MMD`
-                          ?THMMMMMMMMMMMMB9>`                     ...JgWMMMH9=!                           -?TMMMMMMMMMMMMMMMM9=!             (TMMMMMB>`  .7TMMMMMMMMMMM9=`      `
-                             `~!!!!!!!!~`                         (?77??!~`                                   `!??????????!~`                  ????!`        _!!!!!!!~`
-
+          ..Jgg-             ..Jx.                    .......         ....,         ..(,d+
+           dMM#:      .      JMMN>.dY""WMNm,            ?WMMMNp       (MMM% UB"""""YT9?MCT}
+      ?M9""MMMMBYYYYYT9\     JMMM@!     dMMN,    .J&gg-    7MMD       (MMM:      .UMM#
+           dMM#`             JMMN{      ,MMMb     ,MM#:               JMMM .JJJJJJdMMNJ+s.
+      .....WMMN.......+,     JMMN{      .MMMN     JMM#~    ....       dMMN  ?`    JMM#
+      .=```MMM@~~~~~~~~~`    JMMN{      .MMM#     dMM#(JVT"""WMMN+    dMM#        JMM#
+           MMMb              JMMN{      .MMMF     MMMM=       (MMMb.  dMM@   .(JJ+dMM#
+           MMMb        .x:    ~~~      .dMM@`     _~~`        .MMM#~  dMM@  dMMD  JMMMNx.
+           dMMNm.....JgM^             .dMM@`       ..        .dMMM$   dMMN .MMM[  JMM#TMN)
+            ?MMMMMMMMM9!           ..dMB=`          ?9QgggggMMMM9!    -MMM#!?MMN-.dM#^ (8`
+               ``````            _?!``                  ~!!!!`          ~!     ````             　　　　　　　　　　　　　　　　　
  -->
   <body>
     <h1>Watcher of Compartment</h1>
@@ -115,11 +86,13 @@
                   switch ($value->status) {
                     // $value->statusの値がYなら、○を出力
                     case 'Y':
-                      echo '<td>○</td>';
+                     // echo '<td>○</td>';
+					  echo '<td><img src="image/ok.png" alt="○"height="30" width="30"> </td>';
                       break;
                     // $value->statusの値がNなら、×を出力
                     case 'N':
-                      echo '<td>×</td>';
+                      //echo '<td>×</td>';
+					  echo '<td><img src="image/ng.png" alt="×"height="30" width="30"> </td>';
                       break;
                   }
               }
