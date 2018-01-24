@@ -86,14 +86,14 @@
                   switch ($value->status) {
                     // $value->statusの値がYなら、○を出力
                     case 'Y':
-                     // echo '<td>○</td>';
-					  echo '<td><img src="image/ok.png" alt="○"height="30" width="30"> </td>';
-                      break;
+                        echo '<td>○</td>';
+                        //echo '<td><img src="image/ok.png" alt="○"height="30" width="30"> </td>';
+                    break;
                     // $value->statusの値がNなら、×を出力
                     case 'N':
-                      //echo '<td>×</td>';
-					  echo '<td><img src="image/ng.png" alt="×"height="30" width="30"> </td>';
-                      break;
+                        echo '<td>×</td>';
+                      //echo '<td><img src="image/ng.png" alt="×"height="30" width="30"> </td>';
+                    break;
                   }
               }
               echo '</tr>';
