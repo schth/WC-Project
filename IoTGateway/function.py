@@ -19,7 +19,6 @@ def open_serial_port():
     [2]API一覧 http://pythonhosted.org/pyserial/pyserial_api.html
     [3]イントロダクション http://pythonhosted.org/pyserial/shortintro.html
     """
-    # COM5を開く windows用
     serial_connection = serial.Serial()
     serial_connection.baudrate = 115200
     ports = list_ports.comports()  # ポートデータを取得
@@ -28,7 +27,7 @@ def open_serial_port():
         devices.append(info.device)  # ポートの名前を取得
     if len(devices) == 0:
         # シリアル通信できるデバイスが見つからなかった場合
-        print("error: device not found")
+        print("error: シリアル通信できるデバイスが見つかりません")
         sys.exit(0)
     elif len(devices) == 1:
         serial_connection.port = devices[0]  # ポートを指定
@@ -52,8 +51,6 @@ def open_serial_port():
     except serial_connection.SerialException as e:
         print("can't open " + serial_connection.port)
         sys.exit(0)
-        # Mac用
-        # s = serial.Serial('/dev/tty.usbserial-MW1IQ8BN', 115200)
 
 
 # APIサーバーにデータをPOSTする
