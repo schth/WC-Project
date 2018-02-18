@@ -4,15 +4,16 @@ from function import send_wc_status
 from function import convert_comp_status
 from function import is_status_changed
 from function import get_sensor_list
+
 import pprint
 import traceback
 import sys
 import requests
+import serial
 
 
 def main():
-    # シリアルポートを接続
-    serial_connection = open_serial_port()
+
     '''
     センサー（個室）の状態をNで初期化
     comp_statusはdictionary型。key(キー)とvalue(値)のセット(要素)になっている
@@ -21,6 +22,8 @@ def main():
     '''
     comp_status = get_sensor_list()
     pprint.pprint(comp_status)
+    # シリアルポートを接続
+    serial_connection = open_serial_port()
 
     while 1:
         # 1行読み取る
@@ -48,7 +51,8 @@ def main():
                 # 個室の状態に変化があった場合、データをAPIサーバーにPOSTして、DBを更新する
                 if is_status_changed(before_comp_status, current_comp_status):
                     # POSTするデータは、センサーID、個室利用可否状況、センサーのバッテリー
-                    wc_status = {'g_id': sensor_id, 'g_status': current_comp_status,
+                    wc_status = {'g_id': sensor_id,
+                                 'g_status': current_comp_status,
                                  'g_battery': current_sensor_battery}
                     # 個室の状態をAPIサーバーPOSTする
                     send_wc_status(wc_status)
@@ -60,8 +64,18 @@ def main():
 if __name__ == '__main__':
     try:
         main()
+        """
     except requests.exceptions.ConnectionError:
-        print('requests.exceptions.ConnectionError')
+        print('Server ConnectionError')
+        print('... ready to restart')
+        main()
+    except ConnectionRefusedError:
+        print('Server ConnectionError')
+        print('... ready to restart')
+        main()
+        """
+    except serial.serialutil.SerialException:
+        print("serial.serialutil.SerialException:" + "USBとの接続がきれました")
     except Exception as e:
         ex, ms, tb = sys.exc_info()
         print("\nex -> \t", type(ex))

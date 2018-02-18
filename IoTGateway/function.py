@@ -10,6 +10,9 @@ import pprint
 from serial.tools import list_ports
 import sys
 
+# global
+server_host = 'localhost'
+
 
 # pyserialでシリアルポートを自動認識して接続する
 def open_serial_port():
@@ -27,7 +30,7 @@ def open_serial_port():
         devices.append(info.device)  # ポートの名前を取得
     if len(devices) == 0:
         # シリアル通信できるデバイスが見つからなかった場合
-        print("error: シリアル通信できるデバイスが見つかりません")
+        print('error: シリアル通信できるデバイスが見つかりません')
         sys.exit(0)
     elif len(devices) == 1:
         serial_connection.port = devices[0]  # ポートを指定
@@ -42,14 +45,18 @@ def open_serial_port():
                 serial_connection.port = devices[num]  # ポートを指定
                 break
             except Exception as e:
-                print ('index out of range')
+                print('index out of range')
     try:
         # ポートを開いてみる
         serial_connection.open()
-        print("open >>>>>> " + serial_connection.port)
+        print('open usb port: ' + serial_connection.port)
         return serial_connection
-    except serial_connection.SerialException as e:
-        print("can't open " + serial_connection.port)
+    except IOError:  # if port is already opened, close it and open it again and print message
+        serial_connection.close()
+        serial_connection.open()
+        print("port was already open, was closed and opened again!")
+    except serial_connection.serialutil.SerialException as e:
+        print("can't open" + serial_connection.port)
         sys.exit(0)
 
 
@@ -59,11 +66,17 @@ def send_wc_status(wc_status):
 
     :param wc_status:
     """
+
     # POST先
-    api_url = 'http://localhost/api/compartment/insert_status.php'
+    api_url = 'http://' + server_host + '/api/compartment/insert_status.php'
     payload = wc_status
-    response = requests.post(api_url, data=payload)
-    print(response.text)
+
+    try :
+        response = requests.post(api_url, data=payload)
+        print('server response　: ' + response.text)
+    except requests.exceptions.ConnectionError:
+        print('Server Connection Error')
+        print('... record updated failed ...')
 
 
 # センサーの値からドアの状態を変換する
@@ -104,9 +117,25 @@ def get_sensor_list():
     :return:
     """
     # GET先
-    api_url = 'http://localhost/api/compartment/get_sensor_list.php'
-    response = requests.get(api_url)
-    dic_response = {d['sensor_id']: d['status']
-                    for d in json.loads(response.text)['records']}
-    #pprint.pprint(dic_response.keys())
-    return dic_response
+    api_url = 'http://' + server_host + '/api/compartment/get_sensor_list.php'
+    print('connect to ' + api_url)
+
+    while 1 :
+        try :
+            response = requests.get(api_url)
+            dic_response = {d['sensor_id']: d['status']
+                        for d in json.loads(response.text)['records']}
+            return dic_response
+            break
+        except requests.exceptions.ConnectionError:
+            print('Server Connection Error')
+            print('... ready to restart')
+            #get_sensor_list()
+        except json.JSONDecodeError:
+            print(response.text)
+            print('JSONDecodeError:' + 'DBが起動していない可能性があります')
+        except ConnectionRefusedError:
+            print('Server Connection Refused Error')
+            print('... ready to restart')
+            #get_sensor_list()
+        # pprint.pprint(dic_response.keys())
