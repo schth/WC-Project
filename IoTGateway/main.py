@@ -76,7 +76,9 @@ if __name__ == '__main__':
         """
     except serial.serialutil.SerialException:
         print("serial.serialutil.SerialException:" + "USBとの接続がきれました")
+        exit(0)
     except Exception as e:
+        print ("\n unknow error")
         ex, ms, tb = sys.exc_info()
         print("\nex -> \t", type(ex))
         print(ex)
@@ -86,3 +88,4 @@ if __name__ == '__main__':
         print(tb)
         print("\n=== and print_tb ===")
         traceback.print_tb(tb)
+        exit(0)

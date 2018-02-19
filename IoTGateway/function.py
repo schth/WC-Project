@@ -120,22 +120,30 @@ def get_sensor_list():
     api_url = 'http://' + server_host + '/api/compartment/get_sensor_list.php'
     print('connect to ' + api_url)
 
-    while 1 :
+    retry = 0
+    while retry < 5 :
         try :
             response = requests.get(api_url)
             dic_response = {d['sensor_id']: d['status']
                         for d in json.loads(response.text)['records']}
+            print ("api server connected")
             return dic_response
             break
         except requests.exceptions.ConnectionError:
             print('Server Connection Error')
-            print('... ready to restart')
+            print('... ready to retry ...')
+            retry = retry + 1
             #get_sensor_list()
         except json.JSONDecodeError:
             print(response.text)
             print('JSONDecodeError:' + 'DBが起動していない可能性があります')
+            retry = retry + 1
         except ConnectionRefusedError:
             print('Server Connection Refused Error')
-            print('... ready to restart')
-            #get_sensor_list()
-        # pprint.pprint(dic_response.keys())
+            print('... ready to retry ...')
+            retry = retry + 1
+        if retry >= 5:
+           print ('can not connect api server , please check server config')
+           exit(0)
+        #get_sensor_list()
+    # pprint.pprint(dic_response.keys())
