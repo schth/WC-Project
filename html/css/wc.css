@@ -8,29 +8,26 @@ body {
   background: url(../image/back.jpg) no-repeat right top #ede8ea;
 }
 
-div {
-  color: #666666;
-  width: 80%;
-  margin-top: 20px;
-  margin-right: auto;
-  margin-left: auto;
-}
+/* div { */
+  /* color: #666666; */
+  /* width: 80%; */
+  /* margin-top: 20px; */
+  /* margin-right: auto; */
+  /* margin-left: auto; */
+/* } */
 
 #container {
-  width: 80%;
-  /*このdiv要素の幅は、ウィンドウ幅の80％*/
-  max-width: 900px;
-  /*でも最大値は900pxまで*/
-  margin: auto;
-  /*左右autoでセンター合わせに（上下マージンは0）*/
-  padding: 30px;
-  /*内側の空きは上下左右30px*/
+  width: 80%;  
+  max-width: 900px;  
+  margin: auto;  
+  padding: 30px;  
   background: #EEFFFF;
 }
 
 span {}
 
-p {}
+p {   max-width: 700px; /* 横幅の最大値 */
+}
 
 h1 {
   color: #0000FF;
@@ -90,4 +87,66 @@ table#smp1 tr th {
     color : #000;
     font-size:1.0em;
     text-align : center;
+}
+
+.container {
+    width: auto;
+    height: auto;
+    position:relative;
+	margin-right: auto;
+}
+
+/* 
+部屋の状況を示すインジケータ
+ */
+.status1 {
+   float: left;
+   position: absolute;
+   left: 198px;
+   top: 283px;
+   z-index: 1000;
+/*    background-color: #92AD40;*/
+   padding: 15px;
+   color: #FFFFFF;
+   font-weight: bold;
+}
+.status2 {
+   float: left;
+   position: absolute;
+   left: 285px;
+   top: 283px;
+   z-index: 1000;
+/*    background-color: #92AD40;*/
+   padding: 15px;
+   color: #FFFFFF;
+   font-weight: bold;
+}
+.status3 {
+   float: left;
+   position: absolute;
+   left: 371px;
+   top: 283px;
+   z-index: 1000;
+/*    background-color: #92AD40;*/
+   padding: 15px;
+   color: #FFFFFF;
+   font-weight: bold;
+}
+.status4 {
+   float: left;
+   position: absolute;
+   left: 459px;
+   top: 283px;
+   z-index: 1000;
+/*    background-color: #92AD40;*/
+   padding: 15px;
+   color: #FFFFFF;
+   font-weight: bold;
+}
+.redBox {
+	background-color: #ce2525;
+	}
+
+.greenBox{
+	background-color: #92AD40;
 }

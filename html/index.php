@@ -50,25 +50,63 @@
           // $json文字列をオブジェクト型に変換
           $result = json_decode($json);
 
-// APIの結果から、個室の空室数を計算する処理
-  if (count($result->records)) {
-      $empty_number = 0;
-      foreach ($result->records as $key => $value) {
-          switch ($value->status) {
-                // $value->statusの値がYなら、空室の数を＋１
-                case 'Y':
-                  $empty_number = $empty_number +1;
-                  break;
-                // $value->statusの値がNならBreak
-                case 'N':
-                  break;
-              }
-      }
-      echo '<h4>男子トイレの空きは残り<font size="5" color="#ff0000">'.$empty_number.'</font>室！　走れ！!</h4>';
-      //ここに見取り図を貼る
-      echo '<img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />';
-  }
-          if (count($result->records)) {
+		// APIの結果から、個室の空室数を計算する処理
+		  if (count($result->records)) {
+			  $empty_number = 0;
+			  foreach ($result->records as $key => $value) {
+				  switch ($value->status) {
+						// $value->statusの値がYなら、空室の数を＋１
+						case 'Y':
+						  $empty_number = $empty_number +1;
+						  break;
+						// $value->statusの値がNならBreak
+						case 'N':
+						  break;
+					  }
+			  }
+			  echo '<h4>男子トイレの空きは残り<font size="5" color="#ff0000">'.$empty_number.'</font>室！　走れ！!</h4>';
+			  //ここに見取り図を貼る
+			  //echo '<img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />';
+		  }
+		echo '<div class="container">';
+		  foreach ($result->records as $key => $value) {
+						  switch ($value->comp_id) {
+							// $value->statusの値がYなら、○を出力
+							case '1':
+								if ($value->status == 'Y')
+								echo '<div class="status1 greenBox">OK</div>';
+							else 
+								echo '<div class="status1 redBox">NG</div>';
+							break;
+							// $value->statusの値がNなら、×を出力
+							case '2':
+								if ($value->status == 'Y')
+								echo '<div class="status2 greenBox">OK</div>';
+							else 
+								echo '<div class="status2 redBox">NG</div>';
+							break;
+							case '3':
+								if ($value->status == 'Y')
+								echo '<div class="status3 greenBox">OK</div>';
+							else 
+								echo '<div class="status3 redBox">NG</div>';
+							break;
+							case '4':
+								if ($value->status == 'Y')
+								echo '<div class="status4 greenBox">OK</div>';
+							else 
+								echo '<div class="status4 redBox">NG</div>';
+							break;
+						  }
+		  }
+			echo '<img src="image/layout.png" alt="男子トイレ図" />';
+
+		echo '</div>';
+		  
+
+	
+	
+        /*   if (count($result->records)) {
               // テーブルタグ出力
               echo '<table id="smp1">';
               // 1行目
@@ -87,19 +125,17 @@
                     // $value->statusの値がYなら、○を出力
                     case 'Y':
                         echo '<td>○</td>';
-                        //echo '<td><img src="image/ok.png" alt="○"height="30" width="30"> </td>';
                     break;
                     // $value->statusの値がNなら、×を出力
                     case 'N':
                         echo '<td>×</td>';
-                      //echo '<td><img src="image/ng.png" alt="×"height="30" width="30"> </td>';
                     break;
                   }
               }
               echo '</tr>';
               // テーブルタグ閉じ
               echo '</table>';
-          }
+          } */
         ?>
       </p>
     </div>
