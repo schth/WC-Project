@@ -8,7 +8,6 @@ from function import get_sensor_list
 import pprint
 import traceback
 import sys
-import requests
 import serial
 
 
