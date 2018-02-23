@@ -5,6 +5,7 @@
     content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
     <meta charset="UTF-8" />
     <title>Watcher of Compartment</title>
+	<link rel="icon" href="image/favicon.png">
     <link rel="stylesheet" href="css/wc.css" />
   </head>
 
@@ -38,8 +39,12 @@
                ``````            _?!``                  ~!!!!`          ~!     ````             　　　　　　　　　　　　　　　　　
  -->
   <body>
-    <h1>Watcher of Compartment</h1>
-    <h3>～トイレとお腹の渋滞緩和から始める働き方改革～</h3>
+ 
+	<div id="title">
+		<h1>Watcher of Compartment</h1>
+		<h3>～トイレとお腹の渋滞緩和から始める働き方改革～</h3>
+	<div>
+  
     <div id="container">
       <h4>商船三井ビル2階　個室の空き状況を(ほぼ)リアルタイムにお知らせします</h4>
       <p>
@@ -68,44 +73,43 @@
 			  //ここに見取り図を貼る
 			  //echo '<img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />';
 		  }
+		  
 		echo '<div class="container">';
+		
 		  foreach ($result->records as $key => $value) {
 						  switch ($value->comp_id) {
 							// $value->statusの値がYなら、○を出力
 							case '1':
 								if ($value->status == 'Y')
-								echo '<div class="status1 greenBox">OK</div>';
+								echo '<div class="status1 greenBox">OPEN</div>';
 							else 
-								echo '<div class="status1 redBox">NG</div>';
+								echo '<div class="status1 redBox">CLOSE</div>';
 							break;
 							// $value->statusの値がNなら、×を出力
 							case '2':
 								if ($value->status == 'Y')
-								echo '<div class="status2 greenBox">OK</div>';
+								echo '<div class="status2 greenBox">OPEN</div>';
 							else 
-								echo '<div class="status2 redBox">NG</div>';
+								echo '<div class="status2 redBox">CLOSE</div>';
 							break;
 							case '3':
 								if ($value->status == 'Y')
-								echo '<div class="status3 greenBox">OK</div>';
+								echo '<div class="status3 greenBox">OPEN</div>';
 							else 
-								echo '<div class="status3 redBox">NG</div>';
+								echo '<div class="status3 redBox">CLOSE</div>';
 							break;
 							case '4':
 								if ($value->status == 'Y')
-								echo '<div class="status4 greenBox">OK</div>';
+								echo '<div class="status4 greenBox">OPEN</div>';
 							else 
-								echo '<div class="status4 redBox">NG</div>';
+								echo '<div class="status4 redBox">CLOSE</div>';
 							break;
 						  }
 		  }
 			echo '<img src="image/layout.png" alt="男子トイレ図" />';
 
 		echo '</div>';
-		  
 
-	
-	
         /*   if (count($result->records)) {
               // テーブルタグ出力
               echo '<table id="smp1">';
@@ -139,13 +143,16 @@
         ?>
       </p>
     </div>
-  </body>
+			  </body>
+	<div id="footer">
 
-<div id="footer">
-<nav>
-<a href="privacyguide.html">プライバシーガイド</a>
-</nav>
-<p><small>&copy; 2018 MOLIS Laboratory</small></p>
-</div>
+		<ul id="nav" >
+			<li><small>&copy; 2018 MOLIS Laboratory </small></li>
+			<li><a href="privacyguide.html">Privacy</a></li>
+			<li><a href="privacyguide.html">Contact</a></li>
+			<li><a href="https://www.yammer.com/molgroup.com/topics/27207754">About</a></li>
+			<!-- <img src="image/logo.png" alt="logo"/> -->
+		</ul>
+	</div>
 
 </html>

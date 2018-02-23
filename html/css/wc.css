@@ -16,9 +16,17 @@ body {
   /* margin-left: auto; */
 /* } */
 
+#title{
+	width: 80%;  
+  max-width: 900px;  
+  margin: auto;  
+  padding: 30px; 
+}
+
+
 #container {
   width: 80%;  
-  max-width: 900px;  
+  max-width: 850px;  
   margin: auto;  
   padding: 30px;  
   background: #EEFFFF;
@@ -26,8 +34,7 @@ body {
 
 span {}
 
-p {   max-width: 700px; /* 横幅の最大値 */
-}
+
 
 h1 {
   color: #0000FF;
@@ -78,16 +85,7 @@ table#smp1 tr th {
   background: #e6eaff;
   /*th（見出し）だけ背景色を付けてます*/
 }
-#footer {
-    position: center;
-    font-family: Century Gothic, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    color : #000;
-    font-size:1.0em;
-    text-align : center;
-}
+
 
 .container {
     width: auto;
@@ -102,51 +100,82 @@ table#smp1 tr th {
 .status1 {
    float: left;
    position: absolute;
-   left: 198px;
-   top: 283px;
+   left: 195px;
+   top: 200px;
    z-index: 1000;
-/*    background-color: #92AD40;*/
-   padding: 15px;
+   padding: 4px;
    color: #FFFFFF;
    font-weight: bold;
 }
 .status2 {
    float: left;
    position: absolute;
-   left: 285px;
-   top: 283px;
+   left: 282px;
+   top: 200px;
    z-index: 1000;
-/*    background-color: #92AD40;*/
-   padding: 15px;
+   padding: 4px;
    color: #FFFFFF;
    font-weight: bold;
 }
 .status3 {
    float: left;
    position: absolute;
-   left: 371px;
-   top: 283px;
+   left: 369px;
+   top: 200px;
    z-index: 1000;
-/*    background-color: #92AD40;*/
-   padding: 15px;
+   padding: 4px;
    color: #FFFFFF;
    font-weight: bold;
 }
 .status4 {
    float: left;
    position: absolute;
-   left: 459px;
-   top: 283px;
+   left: 456px;
+   top: 200px;
    z-index: 1000;
-/*    background-color: #92AD40;*/
-   padding: 15px;
+   padding: 4px;
    color: #FFFFFF;
    font-weight: bold;
 }
 .redBox {
-	background-color: #ce2525;
+	background-color: #CE2525;
 	}
 
 .greenBox{
 	background-color: #92AD40;
+}
+
+/* フッターの設定 */
+
+#footer {
+    position: left;
+    font-family: Century Gothic, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    bottom: 0;
+    height: 100px;
+    color : #000;
+    font-size:1.0em;
+    text-align : left;
+	width: 80%;  
+	max-width: 900px;  
+	margin: 20px;   
+}
+
+#nav {
+  list-style: none;
+  overflow: hidden;
+}
+
+#nav li {
+  width: auto;
+  text-align: center;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 2px;
+}
+
+#nav li a {
+  text-decoration: none;
+  font-weight: bold;
+  padding: 20px;
 }
