@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta name="generator"
-    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
-    <meta charset="UTF-8" />
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Watcher of Compartment</title>
 	<link rel="icon" href="image/favicon.png">
-    <link rel="stylesheet" href="css/wc.css" />
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/wc.css" rel="stylesheet" />
   </head>
 
 <!--
@@ -39,76 +41,81 @@
                ``````            _?!``                  ~!!!!`          ~!     ````             　　　　　　　　　　　　　　　　　
  -->
   <body>
- 
-	<div id="title">
-		<h1>Watcher of Compartment</h1>
-		<h3>～トイレとお腹の渋滞緩和から始める働き方改革～</h3>
-	<div>
+ 	<div class="container">
+		<header class="header">
+			<h1>Watcher of Compartment</h1>
+			<h4>～トイレとお腹の渋滞緩和から始める働き方改革～</h4>
+		</header>
+		
+        <p class="lead">商船三井ビル2階　個室の空き状況を(ほぼ)リアルタイムにお知らせします</p>
   
-    <div id="container">
-      <h4>商船三井ビル2階　個室の空き状況を(ほぼ)リアルタイムにお知らせします</h4>
-      <p>
-       <?php
+<?php
           // APIを利用
           $url = 'http://127.0.0.1/api/compartment/read_status.php';
           $json = file_get_contents($url);
           // $json文字列をオブジェクト型に変換
           $result = json_decode($json);
 
-		// APIの結果から、個室の空室数を計算する処理
-		  if (count($result->records)) {
-			  $empty_number = 0;
-			  foreach ($result->records as $key => $value) {
-				  switch ($value->status) {
-						// $value->statusの値がYなら、空室の数を＋１
-						case 'Y':
-						  $empty_number = $empty_number +1;
-						  break;
-						// $value->statusの値がNならBreak
-						case 'N':
-						  break;
-					  }
-			  }
-			  echo '<h4>男子トイレの空きは残り<font size="5" color="#ff0000">'.$empty_number.'</font>室！　走れ！!</h4>';
-			  //ここに見取り図を貼る
-			  //echo '<img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />';
-		  }
-		  
-		echo '<div class="container">';
-		
-		  foreach ($result->records as $key => $value) {
-						  switch ($value->comp_id) {
-							// $value->statusの値がYなら、○を出力
-							case '1':
-								if ($value->status == 'Y')
-								echo '<div class="status1 greenBox">OPEN</div>';
-							else 
-								echo '<div class="status1 redBox">CLOSE</div>';
-							break;
-							// $value->statusの値がNなら、×を出力
-							case '2':
-								if ($value->status == 'Y')
-								echo '<div class="status2 greenBox">OPEN</div>';
-							else 
-								echo '<div class="status2 redBox">CLOSE</div>';
-							break;
-							case '3':
-								if ($value->status == 'Y')
-								echo '<div class="status3 greenBox">OPEN</div>';
-							else 
-								echo '<div class="status3 redBox">CLOSE</div>';
-							break;
-							case '4':
-								if ($value->status == 'Y')
-								echo '<div class="status4 greenBox">OPEN</div>';
-							else 
-								echo '<div class="status4 redBox">CLOSE</div>';
-							break;
-						  }
-		  }
-			echo '<img src="image/layout.png" alt="男子トイレ図" />';
+          //個室の残数はとりあえず出さないことにした
+        /* 
+        // APIの結果から、個室の空室数を計算する処理
+          if (count($result->records)) {
+              $empty_number = 0;
+              foreach ($result->records as $key => $value) {
+                  switch ($value->status) {
+                        // $value->statusの値がYなら、空室の数を＋１
+                        case 'Y':
+                          $empty_number = $empty_number +1;
+                          break;
+                        // $value->statusの値がNならBreak
+                        case 'N':
+                          break;
+                      }
+              }
+              echo '<h4>男子トイレの空きは残り<font size="5" color="#ff0000">'.$empty_number.'</font>室！　走れ！!</h4>';
+              //ここに見取り図を貼る
+              //echo '<img src="image/layout.png" alt="男子トイレ図" width="540" height="210" />';
+          } 
+          */
 
-		echo '</div>';
+        echo '<div class="container">';
+          foreach ($result->records as $key => $value) {
+              switch ($value->comp_id) {
+                            // $value->statusの値がYなら、○を出力
+                            case '1':
+                                if ($value->status == 'Y') {
+                                    echo '<div class="status1 greenBox">OPEN</div>';
+                                } else {
+                                echo '<div class="status1 redBox">CLOSE</div>';
+                            }
+                            break;
+                            // $value->statusの値がNなら、×を出力
+                            case '2':
+                                if ($value->status == 'Y') {
+                                    echo '<div class="status2 greenBox">OPEN</div>';
+                                } else {
+                                echo '<div class="status2 redBox">CLOSE</div>';
+                            }
+                            break;
+                            case '3':
+                                if ($value->status == 'Y') {
+                                    echo '<div class="status3 greenBox">OPEN</div>';
+                                } else {
+                                echo '<div class="status3 redBox">CLOSE</div>';
+                            }
+                            break;
+                            case '4':
+                                if ($value->status == 'Y') {
+                                    echo '<div class="status4 greenBox">OPEN</div>';
+                                } else {
+                                echo '<div class="status4 redBox">CLOSE</div>';
+                            }
+                            break;
+                          }
+          }
+            echo '<img src="image/layout.png" alt="男子トイレ図" />';
+
+        echo '</div>';
 
         /*   if (count($result->records)) {
               // テーブルタグ出力
@@ -139,20 +146,20 @@
               echo '</tr>';
               // テーブルタグ閉じ
               echo '</table>';
-          } */
-        ?>
-      </p>
-    </div>
-			  </body>
-	<div id="footer">
+          } */;
+?>
 
-		<ul id="nav" >
-			<li><small>&copy; 2018 MOLIS Laboratory </small></li>
-			<li><a href="privacyguide.html">Privacy</a></li>
-			<li><a href="privacyguide.html">Contact</a></li>
-			<li><a href="https://www.yammer.com/molgroup.com/topics/27207754">About</a></li>
-			<!-- <img src="image/logo.png" alt="logo"/> -->
-		</ul>
-	</div>
+	<footer	class="footer">
+	 <ul class = "list-inline" style ="margin:auto;">
+		<li>&copy; 2018 MOLIS Laboratory</li>
+		<li><a href="index.php">Home</a></li>
+		<li><img src="image/favicon.png" class="img-rounded" alt="logo"></li>
+		<li><a href="privacy.html">Privacy</a></li>
+		<li><a href="mailto:user@dammy.com">Contact</a></li>
+		<li><a href="https://www.yammer.com/molgroup.com/topics/27207754">About</a></li>
+	</ul>
+	</footer>
+</div>
 
+</body>
 </html>
