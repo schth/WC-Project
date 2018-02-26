@@ -22,6 +22,7 @@ def open_serial_port():
     [2]API一覧 http://pythonhosted.org/pyserial/pyserial_api.html
     [3]イントロダクション http://pythonhosted.org/pyserial/shortintro.html
     """
+    print("==============USBポート[BEGIN]===============")
     serial_connection = serial.Serial()
     serial_connection.baudrate = 115200
     ports = list_ports.comports()  # ポートデータを取得
@@ -33,31 +34,35 @@ def open_serial_port():
         print('error: シリアル通信できるデバイスが見つかりません')
         sys.exit(0)
     elif len(devices) == 1:
-        serial_connection.port = devices[0]  # ポートを指定
+        if 'USB' in devices[0]:
+            serial_connection.port = devices[0]  # ポートを指定
+        print('error: シリアル通信できるデバイスが見つかりません')
+        sys.exit(1)
     else:
         for i in range(len(devices)):
             print("input " + str(i) + ":\topen " + devices[i])
             # 開くポートを指定する
-        print("input number of target port\n>> ", end="")
+        print("番号を入力してOPENするUSBポートを指定してください\n>> ", end="")
         while 1:
             try:
                 num = int(input())
                 serial_connection.port = devices[num]  # ポートを指定
                 break
             except Exception as e:
-                print('index out of range')
+                print('指定した番号がリストにありません。try again')
     try:
         # ポートを開いてみる
         serial_connection.open()
-        print('open usb port: ' + serial_connection.port)
+        print('USBポート' + serial_connection.port + '......OK' )
+        print("==============USBポート[END]===============")
         return serial_connection
     except IOError:  # if port is already opened, close it and open it again and print message
         serial_connection.close()
         serial_connection.open()
-        print("port was already open, was closed and opened again!")
+        print("USBポートがすでに開いていました。 閉じて再度開きました!")
     except serial_connection.serialutil.SerialException as e:
-        print("can't open" + serial_connection.port)
-        sys.exit(0)
+        print("USBポートが開きません：" + serial_connection.port)
+        sys.exit(1)
 
 
 # APIサーバーにデータをPOSTする
@@ -117,33 +122,34 @@ def get_sensor_list():
     :return:
     """
     # GET先
+    print("==============APIサーバ[BEGIN]===============")
     api_url = 'http://' + server_host + '/api/compartment/get_sensor_list.php'
-    print('connect to ' + api_url)
+    print(api_url+'に接続します')
 
-    retry = 0
-    while retry < 5 :
+    retry = 1
+    while retry <= 5 :
         try :
             response = requests.get(api_url)
-            dic_response = {d['sensor_id']: d['status']
-                        for d in json.loads(response.text)['records']}
-            print ("api server connected")
+            dic_response = {d['sensor_id']: d['status'] for d in json.loads(response.text)['records']}
+            print ('API Server......OK')
+            print("==============APIサーバ[END]===============")
             return dic_response
             break
         except requests.exceptions.ConnectionError:
-            print('Server Connection Error')
-            print('... ready to retry ...')
+            print('API Serverに接続できません......')
+            print('... 再接続します%d回目 ...' % retry)
             retry = retry + 1
-            #get_sensor_list()
         except json.JSONDecodeError:
             print(response.text)
             print('JSONDecodeError:' + 'DBが起動していない可能性があります')
+            print('... 再接続します%d回目 ...' % retry)
             retry = retry + 1
         except ConnectionRefusedError:
-            print('Server Connection Refused Error')
-            print('... ready to retry ...')
+            print('API Serverとの接続が拒否されました。')
+            print('... 再接続します%d回目 ...' % retry)
             retry = retry + 1
-        if retry >= 5:
-           print ('can not connect api server , please check server config')
-           exit(0)
+        if retry > 5:
+            print ('API Serverに接続できません。 API Serverの設定を確認してください')
+            exit(1)
         #get_sensor_list()
     # pprint.pprint(dic_response.keys())
