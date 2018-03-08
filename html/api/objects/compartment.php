@@ -49,8 +49,13 @@ class Compartment
 
         $result = mysqli_query($this->conn, $query);
 
-        // insert文の実行結果を返す
-        return $result;
+        if ($result == TRUE){
+            // insert文の実行結果を返す
+            return 1;
+        }
+        else {
+            return mysqli_error($this->conn);
+        }
     }
 
     public function get_sensor_list()

@@ -4,6 +4,7 @@ from function import send_wc_status
 from function import convert_comp_status
 from function import is_status_changed
 from function import get_sensor_list
+from datetime import datetime
 
 import pprint
 import traceback
@@ -13,25 +14,21 @@ import serial
 
 def main():
 
-    '''
-    センサー（個室）の状態をNで初期化
-    comp_statusはdictionary型。key(キー)とvalue(値)のセット(要素)になっている
-    例：Key：10e27d0、value:N
-    comp_status = {'10e27d0': 'N', '10e3533': 'N', '10e29b1': 'N', '10e34ee': 'N'}
-    '''
+    #DBに格納しているセンサーの状態を取得する
     comp_status = get_sensor_list()
     pprint.pprint(comp_status)
-    # シリアルポートを接続
+    # シリアルポートを開く
     serial_connection = open_serial_port()
 
     while 1:
         # 1行読み取る
         data = serial_connection.readline()
-        # print(data)
+        # print('[Raw Data:]' + data)
         # 「;」で分割する
         m = str(data).split(';')
         if len(m) == 13:
-            print('送信元シリアル番号：' + m[5] + ' / 送信元電源電圧：' + m[6] + ' / センサー電流：' + m[9])
+            #print('[Raw Data:]' + data)
+            #print('送信元シリアル番号：' + m[5] + ' / 送信元電源電圧：' + m[6] + ' / センサー電流：' + m[9])
             # 送信元のシリアルIDを取得
             sensor_id = m[5]
             if sensor_id in comp_status.keys():
@@ -43,21 +40,33 @@ def main():
                 before_comp_status = comp_status[sensor_id]
                 # センサーの値から現在の個室の状態を割り出す
                 current_comp_status = convert_comp_status(current_sensor_value)
+                #timestamp取得
+                timestamp = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+                #print('before_comp_status:' + comp_status[sensor_id] + '/' + 'current_comp_status:' + current_comp_status)
 
-                print(
-                    'before_comp_status:' + comp_status[sensor_id] + '/' + 'current_comp_status:' + current_comp_status)
-
+                # log出力　//2018-03-08 11:36 [Arrived] 10e2ffe0;battery=1919;sensor=043;status=Y; 
+                print(timestamp+' [Arrival] '+sensor_id+';battery='+current_sensor_battery+';sensor='+current_sensor_value+';status='+current_comp_status )
+                
                 # 個室の状態に変化があった場合、データをAPIサーバーにPOSTして、DBを更新する
                 if is_status_changed(before_comp_status, current_comp_status):
                     # POSTするデータは、センサーID、個室利用可否状況、センサーのバッテリー
                     wc_status = {'g_id': sensor_id,
                                  'g_status': current_comp_status,
                                  'g_battery': current_sensor_battery}
+                    #log出力
+                    print(timestamp + ' [Status] Change detected...Send '+ wc_status)           
+                    
+                                 
                     # 個室の状態をAPIサーバーPOSTする
-                    send_wc_status(wc_status)
+                    print(timestamp+' [Server Response] '+ send_wc_status(wc_status))
+                    
                     # 個室の直前の状態を現在の状態に更新する
                     comp_status[sensor_id] = current_comp_status
-                    print('before_comp_status(changed to):' + comp_status[sensor_id])
+                    
+                    # print('before_comp_status(changed to):' + comp_status[sensor_id])
+                    # log出力　//2018-03-08 11:36 [Updated] 10e2ffe0;battery=1919;sensor=043;status=N;
+                    print(timestamp+' [Updated] '+sensor_id+';battery='+current_sensor_battery+';sensor='+current_sensor_value+';status='+current_comp_status )
+
 
 
 if __name__ == '__main__':

@@ -11,7 +11,7 @@ from serial.tools import list_ports
 import sys
 
 # global
-server_host = 'localhost'
+server_host = '192.168.61.1'
 
 
 # pyserialでシリアルポートを自動認識して接続する
@@ -78,7 +78,7 @@ def send_wc_status(wc_status):
 
     try :
         response = requests.post(api_url, data=payload)
-        print('server response　: ' + response.text)
+        return response.text
     except requests.exceptions.ConnectionError:
         print('Server Connection Error')
         print('... record updated failed ...')

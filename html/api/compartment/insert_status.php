@@ -22,12 +22,14 @@ if ($_SERVER["REQUEST_METHOD"]==="POST") {
         $result =  $compartment->insert($sensor_id, $status, $battery);
 
         //insert文の実行結果を判定
-        if ($result) {
+        if ($result == 1) {
             //tureの場合
-            echo "** New record created successfully **";
+            echo "New record created successfully";
         } else {
             //falseの場合
-            echo  "Record insert error";
+            //echo  "Record insert error";
+            //echo mysql_error();
+            echo $result;
         }
     } else {
         //POSTされたデータに入力されていない項目がある場合
