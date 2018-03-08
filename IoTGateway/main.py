@@ -44,9 +44,9 @@ def main():
                 timestamp = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
                 #print('before_comp_status:' + comp_status[sensor_id] + '/' + 'current_comp_status:' + current_comp_status)
 
-                # log出力　//2018-03-08 11:36 [Arrived] 10e2ffe0;battery=1919;sensor=043;status=Y; 
-                print(timestamp+' [Arrival] '+sensor_id+';battery='+current_sensor_battery+';sensor='+current_sensor_value+';status='+current_comp_status )
-                
+                # log出力　//2018-03-08 11:36 [Arrived] 10e2ffe0;battery=1919;sensor=043;status=Y;
+                print(timestamp+' [Arrival] '+sensor_id+';battery='+str(current_sensor_battery)+';sensor='+str(current_sensor_value)+';status='+current_comp_status )
+
                 # 個室の状態に変化があった場合、データをAPIサーバーにPOSTして、DBを更新する
                 if is_status_changed(before_comp_status, current_comp_status):
                     # POSTするデータは、センサーID、個室利用可否状況、センサーのバッテリー
@@ -54,18 +54,18 @@ def main():
                                  'g_status': current_comp_status,
                                  'g_battery': current_sensor_battery}
                     #log出力
-                    print(timestamp + ' [Status] Change detected...Send '+ wc_status)           
-                    
-                                 
+                    print(timestamp + ' [Status] Change detected...Send '+ str(wc_status))
+
+
                     # 個室の状態をAPIサーバーPOSTする
                     print(timestamp+' [Server Response] '+ send_wc_status(wc_status))
-                    
+
                     # 個室の直前の状態を現在の状態に更新する
                     comp_status[sensor_id] = current_comp_status
-                    
+
                     # print('before_comp_status(changed to):' + comp_status[sensor_id])
                     # log出力　//2018-03-08 11:36 [Updated] 10e2ffe0;battery=1919;sensor=043;status=N;
-                    print(timestamp+' [Updated] '+sensor_id+';battery='+current_sensor_battery+';sensor='+current_sensor_value+';status='+current_comp_status )
+                    print(timestamp+' [Updated] '+sensor_id+';battery='+str(current_sensor_battery)+';sensor='+str(current_sensor_value)+';status='+current_comp_status )
 
 
 
